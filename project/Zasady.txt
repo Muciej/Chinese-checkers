@@ -1,0 +1,20 @@
+Zasady trylmy:
+
+1. Dla 2, 3, 4, lub 6 graczy (przy 3 graczach każdy ma na przeciwko pusty trójkąt)
+2. Cel: ustawić swoje pionki na przeciwnym trójkącie
+3. Plansza ma kształt szecioramiennej gwiazdy:
+    - każdy z wystających trójkątów jest równoboczny i ma bok 4 pola
+    - środek ma kształt sześciokąta foremnego o boku 5
+    - razem 6 x 10 + (90 - 24 - 5) = 121
+4. Używa się po 10 pionków (15, jeśli mamy tylko 2 graczy)
+5. W ruchu można ALBO:
+    - jedno pole w dowolnym kierunu (sąsiednie)
+    - dowolna ilość skoków przez inny pionek (w jednym kierunku: ruszany - inny pion - puste miejsce, można wstedy skoczyć w to puste miejsce)
+    - nie musi być to maksymalna ilość skoków, która jest możliwa
+6. Ruchy zgodnie z kierunkiem wskazówek zegara
+
+Rozłożenie w zależności od liczby graczy:
+ - 6 - każdy róg obstawiony
+ - 4 - to samo, ale dwa trójkąty na przeciwko nie używane
+ - 3 - ułożone co drugi trójkąt
+ - 2 - dwa przeciwne trójkąty zajęte i zwiększona liczba pionów do 15
