@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Chinese-checkers" target="1.5" />
+      <module name="Chinese-checkers" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>
