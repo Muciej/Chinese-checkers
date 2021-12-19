@@ -32,4 +32,11 @@ public class ChineseCheckerServer {
         currentState = newState;
     }
 
+    public int getPlayerCount(){
+        return players.size();
+    }
+
+    public Board getBoard() {
+        return board;
+    }
 }

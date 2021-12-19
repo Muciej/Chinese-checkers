@@ -14,6 +14,13 @@ public class StartHandler extends BaseHandler{
 
     @Override
     public void handle(String command) {
+        if (command.startsWith("START")){
 
+            //when start is requested
+            //if( manager.getBoard(). manager.getPlayerCount())
+
+        } else if (next != null) {
+            next.handle(command);
+        }
     }
 }
