@@ -7,4 +7,9 @@ public class LobbyState extends State {
     public Handler getHandler() {
         return null;
     }
+
+    @Override
+    public void onStateInit() {
+
+    }
 }

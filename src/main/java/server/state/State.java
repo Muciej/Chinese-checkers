@@ -9,4 +9,5 @@ public abstract class State {
     ChineseCheckerServer context;
 
     public abstract Handler getHandler();
+    public abstract void onStateInit();
 }

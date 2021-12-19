@@ -7,4 +7,9 @@ public class GameStartedState extends State{
     public Handler getHandler() {
         return null;
     }
+
+    @Override
+    public void onStateInit() {
+
+    }
 }

@@ -20,7 +20,11 @@ public class ChineseCheckerServer {
     }
 
     public void executeCommand(String command) {
+        commandHandler.handle(command);
+    }
 
+    public void setCurrentState(State newState){
+        currentState = newState;
     }
 
 }
