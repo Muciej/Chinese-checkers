@@ -1,6 +1,12 @@
 package server.handler;
 
+import server.ChineseCheckerServer;
+
 public class AddPlayerHandler extends BaseHandler{
+    public AddPlayerHandler(ChineseCheckerServer man) {
+        super(man);
+    }
+
     @Override
     public void setNext(Handler h) {
         this.next = h;
