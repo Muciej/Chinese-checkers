@@ -6,14 +6,12 @@ import java.util.ArrayList;
 public class Player {
     String name;
     Color color;
-    String start;
-    String dest;
+    int start;
+    int dest;
 
-    Player(String n, Color c, String st, String dst){
+    Player(String n, Color c){
         name = n;
         color = c;
-        start = st;
-        dest = dst;
     }
 
     public String getName() {
@@ -24,11 +22,19 @@ public class Player {
         return color;
     }
 
-    public String getDest() {
+    public int getDest() {
         return dest;
     }
 
-    public String getStart() {
+    public int getStart() {
         return start;
+    }
+
+    public void setStart(int start) {
+        this.start = start;
+    }
+
+    public void setDest(int dest) {
+        this.dest = dest;
     }
 }

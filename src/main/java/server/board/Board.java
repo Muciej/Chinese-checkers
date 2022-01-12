@@ -64,4 +64,12 @@ public class Board {
         fields[toX][toY].setOccupant( fields[fromX][fromY].getOccupant());
         fields[fromX][fromY].setOccupant(null);
     }
+
+    public boolean isValidPlayerCount(int count){
+        return validPlayersNumber.contains(count);
+    }
+
+    public ArrayList<String> getPositions(int playerCount){
+        return null;
+    }
 }
