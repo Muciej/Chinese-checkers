@@ -14,7 +14,7 @@ public class StartHandler extends BaseHandler{
 
     @Override
     public void setNext(IHandler h) {
-
+        this.next = h;
     }
 
     @Override
