@@ -2,7 +2,7 @@ package server.handler;
 
 import server.state.IllegalCommandException;
 
-public interface Handler {
-    void setNext(Handler h);
+public interface IHandler {
+    void setNext(IHandler h);
     void handle(String command) throws IllegalCommandException;
 }
