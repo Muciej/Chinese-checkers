@@ -16,12 +16,14 @@ public class ChineseCheckerServer {
     Board board;
     ArrayList<Player> players;
     ArrayList<Player> playOrder;
+    ArrayList<String> commands;
     Player currentPlayer;
     State currentState;
     BaseHandler commandHandler;
 
     ChineseCheckerServer(){
-        server = new Server(this, 55000, "localhost");
+        server = new Server(this, 55000);
+        commands = new ArrayList<>();
         players = new ArrayList<>();
         playOrder = new ArrayList<>();
         currentPlayer = null;
@@ -29,13 +31,23 @@ public class ChineseCheckerServer {
         currentState = new LobbyState(this);
     }
 
-    public void executeCommand(String command) {
+    public synchronized void executeCommand() {
         try {
-            commandHandler.handle(command);
+            while(commands.size() > 0){
+                for(String c: commands){
+                    commandHandler.handle(c);
+                }
+            }
+
         } catch (IllegalCommandException e) {
             sendCommand("ERROR" + e.getMessage());
         }
     }
+
+    public synchronized void addCommandToExecute(String command){
+        commands.add(command);
+    }
+
 
     public void sendCommand(String command){
         server.sendCommand(command);

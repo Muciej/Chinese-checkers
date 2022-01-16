@@ -30,26 +30,19 @@ public class Board {
             fields = new Field[width][height];
             line = scanner.nextLine().substring(18);
             String[] temp = line.split(",");
-            for(int i=0; i<temp.length; i++){
+            for (String s : temp) {
                 //System.out.println(temp[i]);
-                validPlayersNumber.add(Integer.parseInt(temp[i]));
+                validPlayersNumber.add(Integer.parseInt(s));
             }
             int j = 0;
             while(scanner.hasNextLine()){
                 line = scanner.nextLine();
                 for(int i = 0; i< line.length(); i++){
-                    Field tempField;
-                    switch (line.charAt(i)){
-                        case '-':
-                        case ' ':
-                            tempField = null;
-                            break;
-                        case '*':
-                            tempField = new Field(0);
-                            break;
-                        default:
-                            tempField = new Field( Character.getNumericValue(line.charAt(i)));
-                    }
+                    Field tempField = switch (line.charAt(i)) {
+                        case '-', ' ' -> null;
+                        case '*' -> new Field(0);
+                        default -> new Field(Character.getNumericValue(line.charAt(i)));
+                    };
                     fields[i][j] = tempField;
                 }
                 j++;

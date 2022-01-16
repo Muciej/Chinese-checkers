@@ -1,6 +1,7 @@
 package server.board;
 
 import junit.framework.TestCase;
+import org.junit.Test;
 import org.mockito.Mockito;
 import server.ChineseCheckerServer;
 

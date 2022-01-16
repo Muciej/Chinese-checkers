@@ -21,7 +21,7 @@ public class AddPlayerHandler extends BaseHandler{
         }
         else {
             if( next != null) {
-                next.handle(command);
+                //next.handle(command);
             }
         }
     }
