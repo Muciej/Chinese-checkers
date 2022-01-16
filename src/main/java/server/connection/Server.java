@@ -17,15 +17,16 @@ public class Server implements IServer {
     ChineseCheckerServer command_handler;
     ArrayList<ConnectedClient> clients;
     ExecutorService threadPool;
-    ServerSocket Servsocket;
+    ServerSocket servsocket;
+    boolean running = true;
 
     public Server(ChineseCheckerServer ccs, int port){
         clients = new ArrayList<>();
         command_handler = ccs;
         try {
-            Servsocket = new ServerSocket(port);
+            servsocket = new ServerSocket(port);
             threadPool = Executors.newFixedThreadPool(7);
-            threadPool.execute(new ClientAdder(Servsocket));
+            threadPool.execute(new ClientAdder(servsocket));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -42,7 +43,16 @@ public class Server implements IServer {
 
     @Override
     public void stopServer() {
-        threadPool.shutdownNow();
+        running = false;
+        for(ConnectedClient c: clients){
+            c.stop();
+        }
+        clients.clear();
+        threadPool.shutdown();
+    }
+
+    public int connected(){
+        return clients.size();
     }
 
     /**
@@ -61,7 +71,7 @@ public class Server implements IServer {
             socket = s;
             try {
                 scanner = new Scanner(socket.getInputStream());
-                writer = new PrintWriter(socket.getOutputStream());
+                writer = new PrintWriter(socket.getOutputStream(), true);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -94,8 +104,15 @@ public class Server implements IServer {
          * @param command command to send
          */
         public void sendCommand(String command) {
-            System.out.println("uuu, wysyłanie");
             writer.println(command);
+        }
+
+        public void stop(){
+            try {
+                socket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

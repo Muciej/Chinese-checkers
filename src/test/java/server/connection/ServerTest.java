@@ -19,14 +19,13 @@ public class ServerTest {
     @Test
     public void testCreateServer(){
         Server server = new Server(MockedCheckerServer, 60000);
-
         TestClient testClient = new TestClient(60000);
         server.sendCommand("message");
         Assert.assertEquals("message", testClient.testReceive());
-        System.out.println("Tu jestem");
         testClient.testSend("Sending test");
         Mockito.verify(MockedCheckerServer).addCommandToExecute("Sending test");
-
+        server.stopServer();
+        Assert.assertEquals(0, server.connected());
     }
 
 }
