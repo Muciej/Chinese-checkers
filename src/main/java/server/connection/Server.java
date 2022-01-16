@@ -17,16 +17,16 @@ public class Server implements IServer {
     ChineseCheckerServer command_handler;
     ArrayList<ConnectedClient> clients;
     ExecutorService threadPool;
-    ServerSocket servsocket;
+    ServerSocket servSocket;
     boolean running = true;
 
     public Server(ChineseCheckerServer ccs, int port){
         clients = new ArrayList<>();
         command_handler = ccs;
         try {
-            servsocket = new ServerSocket(port);
+            servSocket = new ServerSocket(port);
             threadPool = Executors.newFixedThreadPool(7);
-            threadPool.execute(new ClientAdder(servsocket));
+            threadPool.execute(new ClientAdder(servSocket));
 
         } catch (IOException e) {
             e.printStackTrace();

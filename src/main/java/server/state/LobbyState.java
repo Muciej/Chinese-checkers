@@ -2,7 +2,7 @@ package server.state;
 
 import server.ChineseCheckerServer;
 import server.handler.AddPlayerHandler;
-import server.handler.Handler;
+import server.handler.IHandler;
 import server.handler.StartHandler;
 
 public class LobbyState extends State {
@@ -12,8 +12,8 @@ public class LobbyState extends State {
     }
 
     @Override
-    public Handler getHandler() {
-        Handler first = new AddPlayerHandler(context);
+    public IHandler getHandler() {
+        IHandler first = new AddPlayerHandler(context);
         first.setNext(new StartHandler(context));
 
         return first;

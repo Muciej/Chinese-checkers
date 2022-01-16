@@ -9,7 +9,7 @@ public class CheckHandler extends BaseHandler {
     }
 
     @Override
-    public void setNext(Handler h) {
+    public void setNext(IHandler h) {
 
     }
 

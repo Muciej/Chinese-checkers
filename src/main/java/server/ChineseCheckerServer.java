@@ -31,7 +31,7 @@ public class ChineseCheckerServer {
         currentState = new LobbyState(this);
     }
 
-    public synchronized void executeCommand() {
+    private synchronized void executeCommands() {
         try {
             while(commands.size() > 0){
                 for(String c: commands){
@@ -46,6 +46,7 @@ public class ChineseCheckerServer {
 
     public synchronized void addCommandToExecute(String command){
         commands.add(command);
+        executeCommands();
     }
 
 

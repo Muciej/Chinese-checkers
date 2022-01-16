@@ -2,9 +2,9 @@ package server.handler;
 
 import server.ChineseCheckerServer;
 
-public abstract class BaseHandler implements Handler{
+public abstract class BaseHandler implements IHandler {
 
-    Handler next = null;
+    IHandler next = null;
     ChineseCheckerServer manager;
 
     public BaseHandler(ChineseCheckerServer man){

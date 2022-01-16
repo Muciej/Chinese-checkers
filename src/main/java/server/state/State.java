@@ -1,7 +1,7 @@
 package server.state;
 
 import server.ChineseCheckerServer;
-import server.handler.Handler;
+import server.handler.IHandler;
 
 public abstract class State {
     ChineseCheckerServer context;
@@ -11,6 +11,6 @@ public abstract class State {
         onStateInit();
     }
 
-    public abstract Handler getHandler();
+    public abstract IHandler getHandler();
     public abstract void onStateInit();
 }

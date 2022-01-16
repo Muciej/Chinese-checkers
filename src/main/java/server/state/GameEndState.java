@@ -1,16 +1,16 @@
 package server.state;
 
 import server.ChineseCheckerServer;
-import server.handler.Handler;
+import server.handler.IHandler;
 
-public class GameEndState extends State{
+public class GameEndState extends State {
 
     public GameEndState(ChineseCheckerServer con){
         super(con);
     }
 
     @Override
-    public Handler getHandler() {
+    public IHandler getHandler() {
         return null;
     }
 

@@ -1,7 +1,6 @@
 package server;
 
 import java.awt.*;
-import java.util.ArrayList;
 
 public class Player {
     String name;
