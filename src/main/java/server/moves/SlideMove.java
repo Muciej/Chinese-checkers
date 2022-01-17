@@ -5,8 +5,32 @@ import server.board.Board;
 import java.util.ArrayList;
 
 public class SlideMove implements IMove{
-    @Override
-    public void addMoves(Board board, int x, int y, ArrayList<Integer> avalMoves) {
 
+    int fromX;
+    int fromY;
+    String playerName;
+    Board board;
+    ArrayList<Move> avalMoves;
+
+    @Override
+    public void addMoves(Board board, Move move, ArrayList<Move> avalMoves) {
+        fromX = move.fromX;
+        fromY = move.toY;
+        playerName = move.playerName;
+        this.board = board;
+        this.avalMoves = avalMoves;
+
+        checkDir(1,1);
+        checkDir(1,-1);
+        checkDir(-1, -1);
+        checkDir(-1, 1);
+    }
+
+    private void checkDir(int dx, int dy){
+        int currX = fromX + dx;
+        int currY = fromY + dy;
+        if(currX < board.getWidth() && currX >= 0 && currY < board.getHeight() && currY >= 0 && board.getField(currX, currY) != null && board.getField(currX, currY).getOccupant() == null) {
+            avalMoves.add(new Move(playerName, fromX, fromY, currX, currY));
+        }
     }
 }

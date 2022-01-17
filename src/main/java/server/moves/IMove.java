@@ -5,6 +5,12 @@ import server.board.Board;
 import java.util.ArrayList;
 
 public interface IMove {
-    void addMoves(Board board, int x, int y, ArrayList<Integer> avalMoves);
+    /**
+     * Funkcja dodająca wszystkie możliwe ruchy danego typu do tablicy możliwych ruchów
+     * @param board - plansza gry
+     * @param move - ruch, dla którego pozycji początkowych mają zostać możliwe ruchy
+     * @param avalMoves - tablica możliwych ruchów
+     */
+    void addMoves(Board board, Move move, ArrayList<Move> avalMoves);
 
 }

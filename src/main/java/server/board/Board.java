@@ -65,4 +65,16 @@ public class Board {
     public ArrayList<String> getPositions(int playerCount){
         return null;
     }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public Field getField(int x, int y){
+        return fields[x][y];
+    }
 }

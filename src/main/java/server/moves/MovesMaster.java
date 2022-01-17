@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class MovesMaster {
     Board board;
     ArrayList<IMove> chain;
-    ArrayList<Integer> availableMoves;
+    ArrayList<Move> availableMoves;
 
     MovesMaster(Board board){
         this.board = board;
@@ -18,12 +18,12 @@ public class MovesMaster {
         chain.add(new SlideMove());
     }
 
-    boolean checkFor(int x, int y){
+    boolean checkFor(Move move){
         availableMoves.clear();
         for(IMove m: chain){
-            m.addMoves(board, x, y, availableMoves);
+            m.addMoves(board, move, availableMoves);
         }
-        return availableMoves.contains(x);
+        return availableMoves.contains(move);
     }
 
 
