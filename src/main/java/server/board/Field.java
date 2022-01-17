@@ -1,11 +1,15 @@
 package server.board;
 
+import java.awt.*;
+
 public class Field {
     private String occupant;
-    private int startFieldNo;
+    private final int startFieldNo;
+    private Color color;
     Field(int startFieldNo){
         this.startFieldNo = startFieldNo;
         occupant = null;
+        color = Color.BLACK;
     }
 
     public void setOccupant(String occupant) {
@@ -18,5 +22,13 @@ public class Field {
 
     public int getStartFieldNo() {
         return startFieldNo;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
     }
 }

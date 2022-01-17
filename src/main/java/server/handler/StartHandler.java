@@ -3,6 +3,7 @@ package server.handler;
 import server.ChineseCheckerServer;
 import server.Player;
 import server.board.Board;
+import server.state.GameStartedState;
 import server.state.IllegalCommandException;
 
 import java.util.ArrayList;
@@ -35,8 +36,16 @@ public class StartHandler extends BaseHandler{
                 for(Player p: players){
                     p.setStart(startPositions[i]);
                     p.setDest(destPositions[i]);
+                    manager.addToPlayorder(p);
+                    board.fillPos(p.getName(), p.getStart(), p.getColor());
                     i++;
                 }
+                manager.setCurrentPlayer(manager.getPlayOrder().get(0));
+
+                //kod odpowiedzialny za przekazanie początkowego stanu planszy do klientów
+
+                manager.setCurrentState(new GameStartedState(manager));
+
             } else {
                 throw new IllegalCommandException("Cannot start game with that amount of players!");
             }

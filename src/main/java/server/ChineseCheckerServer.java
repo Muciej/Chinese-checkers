@@ -87,4 +87,12 @@ public class ChineseCheckerServer {
     public void addToPlayorder(Player p){
         playOrder.add(p);
     }
+
+    public void setCurrentPlayer(Player currentPlayer) {
+        this.currentPlayer = currentPlayer;
+    }
+
+    public ArrayList<Player> getPlayOrder() {
+        return playOrder;
+    }
 }

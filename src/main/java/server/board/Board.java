@@ -2,6 +2,7 @@ package server.board;
 
 import server.ChineseCheckerServer;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -65,6 +66,18 @@ public class Board {
     public void doMove(int fromX, int fromY, int toX, int toY){
         fields[toX][toY].setOccupant( fields[fromX][fromY].getOccupant());
         fields[fromX][fromY].setOccupant(null);
+    }
+
+    public void fillPos(String occupant, int posNo, Color color){
+        for(int i=0; i<height; i++){
+            for(int j=0; j<width; j++){
+                Field tempField = fields[j][i];
+                if(tempField.getStartFieldNo() == posNo){
+                    tempField.setOccupant(occupant);
+                    tempField.setColor(color);
+                }
+            }
+        }
     }
 
     public boolean isValidPlayerCount(int count){
