@@ -14,7 +14,7 @@ public class JumpMove implements IMove {
     @Override
     public void addMoves(Board board, Move move, ArrayList<Move> avalMoves) {
         fromX = move.fromX;
-        fromY = move.toY;
+        fromY = move.fromY;
         playerName = move.playerName;
         this.board = board;
         this.avalMoves = avalMoves;
@@ -35,8 +35,10 @@ public class JumpMove implements IMove {
      * @param dy pionowa składowa wektora
      */
     private void checkJump(int startX, int startY, int dx, int dy){
+        //System.out.println();
         int currX = startX + dx;
         int currY = startY + dy;
+        //System.out.println("Sprawdzam, startuję z pola: "+ currX + " " + currY);
         //sprawdza, czy sąsiednie pole jest zajęte przez jakiś pionek oraz czy w ogóle to sąsiednie pole istnieje
         if(isLegalField(currX, currY) && board.getField(currX, currY).getOccupant() != null){
             currX += dx;
@@ -44,12 +46,12 @@ public class JumpMove implements IMove {
             //sprawdza, czy docelowe pole do skoku jest puste i czy w ogóle istnieje
             if(isLegalField(currX, currY) && board.getField(currX, currY).getOccupant() == null){
                 avalMoves.add(new Move(playerName, fromX, fromY, currX, currY));
-                checkJump(currX, currY, 1, 1);
-                checkJump(currX, currY, 1, -1);
-                checkJump(currX, currY, -1, 1);
-                checkJump(currX, currY, -1, -1);
-                checkJump(currX, currY, 2,0);
-                checkJump(currX, currY, -2,0);
+                if(1 != -dx || 1 != -dy) checkJump(currX, currY, 1, 1);
+                if(1 != -dx || -1 != -dy) checkJump(currX, currY, 1, -1);
+                if(-1 != -dx || 1 != -dy) checkJump(currX, currY, -1, 1);
+                if(-1 != -dx || -1 != -dy) checkJump(currX, currY, -1, -1);
+                if(2 != -dx || 0 != -dy) checkJump(currX, currY, 2,0);
+                if(-2 != -dx || 0 != -dy) checkJump(currX, currY, -2,0);
             }
         }
     }

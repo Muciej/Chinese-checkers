@@ -15,7 +15,7 @@ public class MovesMaster {
         chain = new ArrayList<>();
         availableMoves = new ArrayList<>();
 
-        //chain.add(new JumpMove());
+        chain.add(new JumpMove());
         chain.add(new SlideMove());
     }
 
@@ -30,9 +30,11 @@ public class MovesMaster {
             m.addMoves(board, move, availableMoves);
         }
         for(Move m: availableMoves){
-            System.out.println("Możliwy ruch na: " + m.toX + " " + m.toY);
+            //System.out.println("Możliwy ruch " + m.playerName + " z " + m.fromX + " " + m.fromY);
+            //System.out.println("na: " + m.toX + " " + m.toY);
+            if(move.toX == m.toX && move.toY == m.toY) return true;
         }
-        return availableMoves.contains(move);
+        return false;
     }
 
 

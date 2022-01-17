@@ -23,21 +23,13 @@ public class MovesMasterTest extends TestCase {
         generateTestBoard();
         movesMaster = new MovesMaster(board);
         Move move = new Move("Ex", 10, 2, 12, 4);
-        System.out.println(movesMaster.checkFor(move));
-        /*
-        //Assert.assertTrue(movesMaster.checkFor(move));
+        Assert.assertTrue(movesMaster.checkFor(move));
         move = new Move("Ex", 10, 2, 10, 6);
-        //Assert.assertTrue(movesMaster.checkFor(move));
-        System.out.println(movesMaster.checkFor(move));
+        Assert.assertTrue(movesMaster.checkFor(move));
         move = new Move("Ex", 10, 2, 11, 3);
-        //Assert.assertFalse(movesMaster.checkFor(move));
-        System.out.println(movesMaster.checkFor(move));
+        Assert.assertFalse(movesMaster.checkFor(move));
         move = new Move("Ex", 10, 2, 9, 3);
-        //Assert.assertTrue(movesMaster.checkFor(move));
-        System.out.println(movesMaster.checkFor(move));
-
-         */
-
+        Assert.assertTrue(movesMaster.checkFor(move));
     }
 
     private void generateTestBoard(){
@@ -47,8 +39,7 @@ public class MovesMasterTest extends TestCase {
         board.getField(11, 3).setOccupant("Ex");
         board.getField(10, 4).setOccupant("Ex");
         board.getField(11, 5).setOccupant("Ex");
-        board.showBoard();
-
+        //board.showBoard();
     }
 
 
