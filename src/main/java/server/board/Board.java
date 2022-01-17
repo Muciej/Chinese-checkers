@@ -2,7 +2,6 @@ package server.board;
 
 import server.ChineseCheckerServer;
 
-import java.awt.geom.Point2D;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -12,6 +11,7 @@ public class Board {
     ChineseCheckerServer manager;
     ArrayList<Integer> validPlayersNumber;
     ArrayList<String> initPositions;
+    ArrayList<String> destPositions;
     Field[][] fields;
     int width;
     int height;
@@ -19,6 +19,7 @@ public class Board {
         this.manager = manager;
         validPlayersNumber = new ArrayList<>();
         initPositions = new ArrayList<>();
+        destPositions = new ArrayList<>();
         readFromFile(boardFileName);
     }
 
@@ -39,6 +40,8 @@ public class Board {
             for(int i=0; i<validPlayersNumber.size(); i++){
                 line = scanner.nextLine();
                 initPositions.add(line);
+                line = scanner.nextLine();
+                destPositions.add(line);
             }
             int j = 0;
             while(scanner.hasNextLine()){
@@ -68,10 +71,16 @@ public class Board {
         return validPlayersNumber.contains(count);
     }
 
-    public int[] getPositions(int playerCount){
-        int[] startPos = new int[playerCount];
+    public int[] getPositions(int playerCount, String goal){
+        ArrayList<String> posArray;
+        if(goal.equals("START")){
+            posArray = initPositions;
+        } else {
+            posArray = destPositions;
+        }
+        int[] pos = new int[playerCount];
         String line = null;
-        for(String s: initPositions){
+        for(String s: posArray){
             if(s.startsWith(Integer.toString(playerCount))){
                 line = s;
             }
@@ -80,13 +89,13 @@ public class Board {
         if(line != null){
             splitLine = line.substring(2).split(" ");
             for(int i=0; i<playerCount; i++){
-                startPos[i] = Integer.parseInt(splitLine[i]);
+                pos[i] = Integer.parseInt(splitLine[i]);
             }
         } else{
             System.out.println("Nieprawidłowa liczba graczy");
         }
 
-        return  startPos;
+        return pos;
     }
 
     public int getHeight() {

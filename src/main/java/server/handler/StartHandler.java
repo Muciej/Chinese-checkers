@@ -22,16 +22,21 @@ public class StartHandler extends BaseHandler{
         if (command.startsWith("START")){
 
             Board board = manager.getBoard();
-
+            int playersNum = manager.getPlayerCount();
             //when start is requested
-            if( board.isValidPlayerCount(manager.getPlayerCount())){
+            if( board.isValidPlayerCount(playersNum)){
 
                 //setting start and destination
-                int[] positions = board.getPositions(manager.getPlayerCount());
+                int[] startPositions = board.getPositions(playersNum, "START");
+                int[] destPositions = board.getPositions(playersNum, "DEST");
                 ArrayList<Player> players = manager.getPlayers();
                 manager.clearPlayOrder();
-                int i = 0;
-
+                int i=0;
+                for(Player p: players){
+                    p.setStart(startPositions[i]);
+                    p.setDest(destPositions[i]);
+                    i++;
+                }
             } else {
                 throw new IllegalCommandException("Cannot start game with that amount of players!");
             }

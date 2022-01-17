@@ -15,7 +15,7 @@ public class BoardTest extends TestCase {
         assertEquals(null, board.fields[0][0]);
         assertEquals(null, board.fields[2][2]);
         String valnum = board.validPlayersNumber.toString();
-        assertEquals("[4, 2]", valnum);
+        assertEquals("[2, 4]", valnum);
         printBoard(board);
     }
 
@@ -29,8 +29,9 @@ public class BoardTest extends TestCase {
     public void testPlayerCount(){
         Board board = createTestBoard();
         Assert.assertTrue(board.isValidPlayerCount(4));
-        Assert.assertEquals(1, board.getPositions(2)[0]);
-        Assert.assertEquals(3, board.getPositions(2)[1]);
+        Assert.assertEquals(1, board.getPositions(2, "START")[0]);
+        Assert.assertEquals(3, board.getPositions(2, "START")[1]);
+        Assert.assertEquals(3, board.getPositions(4, "DEST")[1]);
     }
 
     private Board createTestBoard(){
