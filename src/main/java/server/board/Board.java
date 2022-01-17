@@ -11,12 +11,14 @@ import java.util.Scanner;
 public class Board {
     ChineseCheckerServer manager;
     ArrayList<Integer> validPlayersNumber;
+    ArrayList<String> initPositions;
     Field[][] fields;
     int width;
     int height;
     public Board(ChineseCheckerServer manager, String boardFileName) {
         this.manager = manager;
         validPlayersNumber = new ArrayList<>();
+        initPositions = new ArrayList<>();
         readFromFile(boardFileName);
     }
 
@@ -33,6 +35,10 @@ public class Board {
             for (String s : temp) {
                 //System.out.println(temp[i]);
                 validPlayersNumber.add(Integer.parseInt(s));
+            }
+            for(int i=0; i<validPlayersNumber.size(); i++){
+                line = scanner.nextLine();
+                initPositions.add(line);
             }
             int j = 0;
             while(scanner.hasNextLine()){
@@ -62,8 +68,25 @@ public class Board {
         return validPlayersNumber.contains(count);
     }
 
-    public ArrayList<String> getPositions(int playerCount){
-        return null;
+    public int[] getPositions(int playerCount){
+        int[] startPos = new int[playerCount];
+        String line = null;
+        for(String s: initPositions){
+            if(s.startsWith(Integer.toString(playerCount))){
+                line = s;
+            }
+        }
+        String[] splitLine = null;
+        if(line != null){
+            splitLine = line.substring(2).split(" ");
+            for(int i=0; i<playerCount; i++){
+                startPos[i] = Integer.parseInt(splitLine[i]);
+            }
+        } else{
+            System.out.println("Nieprawidłowa liczba graczy");
+        }
+
+        return  startPos;
     }
 
     public int getHeight() {

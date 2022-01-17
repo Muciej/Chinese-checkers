@@ -1,6 +1,7 @@
 package server.board;
 
 import junit.framework.TestCase;
+import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 import server.ChineseCheckerServer;
@@ -23,6 +24,13 @@ public class BoardTest extends TestCase {
         board.fields[2][1].setOccupant("Player 1");
         board.doMove(2,1,4,0);
         assertEquals("Player 1", board.fields[4][0].getOccupant());
+    }
+
+    public void testPlayerCount(){
+        Board board = createTestBoard();
+        Assert.assertTrue(board.isValidPlayerCount(4));
+        Assert.assertEquals(1, board.getPositions(2)[0]);
+        Assert.assertEquals(3, board.getPositions(2)[1]);
     }
 
     private Board createTestBoard(){

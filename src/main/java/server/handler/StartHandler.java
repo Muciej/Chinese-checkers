@@ -27,21 +27,10 @@ public class StartHandler extends BaseHandler{
             if( board.isValidPlayerCount(manager.getPlayerCount())){
 
                 //setting start and destination
-                ArrayList<String> positions = board.getPositions(manager.getPlayerCount());
+                int[] positions = board.getPositions(manager.getPlayerCount());
                 ArrayList<Player> players = manager.getPlayers();
-                int i = 0;
-                for(Player p: players){
-                    String[] temp = positions.get(i).split("-");
-                    p.setStart(Integer.parseInt(temp[0]));
-                    p.setDest(Integer.parseInt(temp[1]));
-                }
-
-                //setting order of play
                 manager.clearPlayOrder();
-                int first = (int)( (Math.random()* manager.getPlayerCount()) + 1);
-
-
-
+                int i = 0;
 
             } else {
                 throw new IllegalCommandException("Cannot start game with that amount of players!");
