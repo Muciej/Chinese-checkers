@@ -77,4 +77,38 @@ public class Board {
     public Field getField(int x, int y){
         return fields[x][y];
     }
+
+    public void showBoard(){
+        if(fields == null) return;
+        System.out.print("   ");
+        for(int i=0; i<width; i++){
+            System.out.print(i);
+            if(i < 10) {
+                System.out.print(' ');
+            }
+        }
+        System.out.print('\n');
+        for(int i=0; i<height; i++){
+            System.out.print(i);
+            if(i < 10){
+                System.out.print("  ");
+            } else {
+                System.out.print(" ");
+            }
+            for(int j=0; j<width; j++){
+                Field tempField = fields[j][i];
+                if(tempField != null){
+                    if(tempField.getOccupant()!= null){
+                        System.out.print(tempField.getOccupant().charAt(0));
+                        System.out.print(tempField.getOccupant().charAt(1));
+                    } else{
+                        System.out.print("[]");
+                    }
+                } else{
+                    System.out.print("  ");
+                }
+            }
+            System.out.print('\n');
+        }
+    }
 }

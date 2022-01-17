@@ -18,6 +18,12 @@ public class JumpMove implements IMove {
         playerName = move.playerName;
         this.board = board;
         this.avalMoves = avalMoves;
+        checkJump(move.fromX, move.fromY, 1, 1);
+        checkJump(move.fromX, move.fromY, 1, -1);
+        checkJump(move.fromX, move.fromY, -1, 1);
+        checkJump(move.fromX, move.fromY, -1 ,-1);
+        checkJump(move.fromX, move.fromY, 2,0);
+        checkJump(move.fromX, move.fromY, -2,0);
 
     }
 
@@ -42,6 +48,8 @@ public class JumpMove implements IMove {
                 checkJump(currX, currY, 1, -1);
                 checkJump(currX, currY, -1, 1);
                 checkJump(currX, currY, -1, -1);
+                checkJump(currX, currY, 2,0);
+                checkJump(currX, currY, -2,0);
             }
         }
     }

@@ -15,7 +15,7 @@ public class SlideMove implements IMove{
     @Override
     public void addMoves(Board board, Move move, ArrayList<Move> avalMoves) {
         fromX = move.fromX;
-        fromY = move.toY;
+        fromY = move.fromY;
         playerName = move.playerName;
         this.board = board;
         this.avalMoves = avalMoves;
@@ -24,6 +24,9 @@ public class SlideMove implements IMove{
         checkDir(1,-1);
         checkDir(-1, -1);
         checkDir(-1, 1);
+        checkDir(2,0);
+        checkDir(-2, 0);
+
     }
 
     private void checkDir(int dx, int dy){
