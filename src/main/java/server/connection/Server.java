@@ -28,6 +28,7 @@ public class Server implements IServer {
             threadPool = Executors.newFixedThreadPool(7);
             threadPool.execute(new ClientAdder(servSocket));
 
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -126,7 +127,7 @@ public class Server implements IServer {
         @Override
         public void run() {
             try{
-                while(true){
+                while(running){
                     Socket s = socket.accept();
                     threadPool.execute(new ConnectedClient(s));
                 }
