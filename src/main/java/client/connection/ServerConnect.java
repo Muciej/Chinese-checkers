@@ -17,7 +17,7 @@ public class ServerConnect {
     ExecutorService threadPool;
     Scanner servScanner;
     PrintWriter servWriter;
-    ServerConnect(String host, int port, ClientFacade facade){
+    public ServerConnect(String host, int port, ClientFacade facade){
         this.facade = facade;
         try {
             socket = new Socket(host, port);

@@ -1,5 +1,6 @@
 package client.windows;
 
+import client.board.Board;
 import client.facade.ClientFacade;
 
 import javax.swing.*;
@@ -15,7 +16,6 @@ public class MainWindow extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
         setSize(1000, 1000);
-
         setVisible(true);
     }
 }

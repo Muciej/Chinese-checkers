@@ -1,4 +1,12 @@
 package client.facade.handlers;
 
-public class BaseHandler implements IHandler{
+import client.facade.ClientFacade;
+
+public abstract class BaseHandler implements IHandler{
+
+    ClientFacade facade;
+
+    public BaseHandler(ClientFacade facade){
+        this.facade = facade;
+    }
 }
