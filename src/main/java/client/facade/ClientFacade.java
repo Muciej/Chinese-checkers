@@ -3,7 +3,6 @@ package client.facade;
 import client.board.Board;
 import client.connection.ServerConnect;
 import client.facade.handlers.*;
-import client.windows.EndPnl;
 import client.windows.MainWindow;
 import client.windows.StartPnl;
 import server.state.IllegalCommandException;
@@ -14,7 +13,6 @@ public class ClientFacade {
 
     MainWindow mainWindow;
     StartPnl startPnl;
-    EndPnl endPnl;
     Board board;
     IHandler chain;
     String playerName;
@@ -25,20 +23,17 @@ public class ClientFacade {
         mainWindow = new MainWindow(this);
         startPnl = new StartPnl(this);
         startPnl.setVisible(true);
-        endPnl = new EndPnl(this);
-        endPnl.setVisible(false);
         board = new Board(this);
         board.setVisible(false);
         mainWindow.add(startPnl, BorderLayout.CENTER);
-        mainWindow.add(endPnl);
-        mainWindow.add(board);
+        mainWindow.add(board, BorderLayout.CENTER);
 
-        IHandler first = new StartHandler();
-        IHandler second = new MoveHandler();
+        IHandler first = new StartHandler(this);
+        IHandler second = new MoveHandler(this);
         first.setNext(second);
-        IHandler third = new ShowDialogHandler();
+        IHandler third = new ShowDialogHandler(this);
         second.setNext(third);
-        IHandler fourth = new QuitHandler();
+        IHandler fourth = new QuitHandler(this);
         third.setNext(fourth);
         chain = first;
     }
