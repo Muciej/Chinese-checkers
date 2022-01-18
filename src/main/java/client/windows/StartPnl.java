@@ -35,6 +35,7 @@ public class StartPnl extends JPanel implements ActionListener {
     void addPlayer(){
         String name = nameField.getText();
         String colStr = color.getText();
+        facade.setPlayerName(name);
         facade.sendCommand("ADD "+name+" "+colStr);
     }
 

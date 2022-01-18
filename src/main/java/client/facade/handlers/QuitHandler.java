@@ -10,11 +10,15 @@ public class QuitHandler extends BaseHandler{
 
     @Override
     public void setNext(IHandler h) {
-
+        this.next = h;
     }
 
     @Override
     public void handle(String command) throws IllegalCommandException {
-
+        if(command.startsWith("QUIT")){
+            facade.quit();
+        } else{
+            if(next != null) next.handle(command);
+        }
     }
 }

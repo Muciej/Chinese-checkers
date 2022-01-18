@@ -35,22 +35,43 @@ public class ClientFacade {
         second.setNext(third);
         IHandler fourth = new QuitHandler(this);
         third.setNext(fourth);
+        IHandler fifth = new InitHandler(this);
+        fourth.setNext(fifth);
         chain = first;
     }
 
     public void executeCommand(String command){
         try {
-            chain.handle(command);
+            System.out.println(command);
+            if(command.startsWith(playerName)) chain.handle(command.substring(playerName.length()+1));
         } catch (IllegalCommandException e) {
             e.printStackTrace();
         }
     }
 
     public void sendCommand(String command){
+        System.out.println(command);
         serverConnect.sendCommand(playerName + " " + command);
+
     }
 
     public void setPlayerName(String playerName) {
         this.playerName = playerName;
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public MainWindow getMainWindow() {
+        return mainWindow;
+    }
+
+    public void quit() {
+    }
+
+    public void setStartView() {
+        startPnl.setVisible(false);
+        board.setVisible(true);
     }
 }
