@@ -2,6 +2,7 @@ package server.state;
 
 import server.ChineseCheckerServer;
 import server.handler.IHandler;
+import server.handler.QuitHandler;
 
 public class GameEndState extends State {
 
@@ -11,7 +12,8 @@ public class GameEndState extends State {
 
     @Override
     public IHandler getHandler() {
-        return null;
+        IHandler first = new QuitHandler(context);
+        return first;
     }
 
     @Override
