@@ -156,4 +156,19 @@ public class Board {
             System.out.print('\n');
         }
     }
+
+    public boolean checkPos(String playerName, int posNo){
+        boolean occupies = true;
+        for(int i=0; i<height; i++){
+            for(int j=0; j<width; j++){
+                Field tempField = fields[j][i];
+                if (tempField.getStartFieldNo() != posNo || !tempField.getOccupant().equals(playerName)) {
+                    occupies = false;
+                    break;
+                }
+            }
+        }
+
+        return occupies;
+    }
 }

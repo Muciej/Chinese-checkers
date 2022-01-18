@@ -10,7 +10,7 @@ public class MovesMaster {
     ArrayList<IMove> chain;
     ArrayList<Move> availableMoves;
 
-    MovesMaster(Board board){
+    public MovesMaster(Board board){
         this.board = board;
         chain = new ArrayList<>();
         availableMoves = new ArrayList<>();
@@ -19,7 +19,7 @@ public class MovesMaster {
         chain.add(new SlideMove());
     }
 
-    boolean checkFor(Move move){
+    public boolean checkFor(Move move){
         //sprawdzenie, czy w ogóle gracz, który chce wykonać taki ruch znajduje się na tym polu
         if( !move.playerName.equals(board.getField(move.fromX, move.fromY).getOccupant()) ){
             //System.out.println("A won mi stąd");

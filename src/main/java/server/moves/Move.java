@@ -1,13 +1,13 @@
 package server.moves;
 
 public class Move {
-    int fromX;
-    int fromY;
-    int toX;
-    int toY;
-    String playerName;
+    public int fromX;
+    public int fromY;
+    public int toX;
+    public int toY;
+    public String playerName;
 
-    Move(String playerName, int fromX, int fromY, int toX, int toY){
+    public Move(String playerName, int fromX, int fromY, int toX, int toY){
         this.fromX = fromX;
         this.fromY = fromY;
         this.playerName = playerName;

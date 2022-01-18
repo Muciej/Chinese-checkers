@@ -8,7 +8,7 @@ public class Player {
     int start;
     int dest;
 
-    Player(String n, Color c){
+    public Player(String n, Color c){
         name = n;
         color = c;
     }
