@@ -16,7 +16,9 @@ public class InitHandler extends BaseHandler{
 
     @Override
     public void handle(String command) throws IllegalCommandException {
-        if(command.startsWith("")){
+        if(command.startsWith("INIT")){
+            String[] tab = command.split(" ");
+            if(tab.length < 5) throw new IllegalCommandException("Wrong format of command INIT");
 
         } else{
             if(next != null) next.handle(command);

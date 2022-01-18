@@ -45,7 +45,7 @@ public class ClientFacade {
             System.out.println(command);
             if(command.startsWith(playerName)) chain.handle(command.substring(playerName.length()+1));
         } catch (IllegalCommandException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
@@ -68,6 +68,7 @@ public class ClientFacade {
     }
 
     public void quit() {
+        serverConnect.terminate();
     }
 
     public void setStartView() {

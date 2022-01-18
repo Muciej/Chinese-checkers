@@ -34,6 +34,15 @@ public class ServerConnect {
         servWriter.println(command);
     }
 
+    public void terminate() {
+        threadPool.shutdown();
+        try {
+            socket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private static class ServerReader implements Runnable{
 
         Socket sock;
