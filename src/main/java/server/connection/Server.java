@@ -37,7 +37,7 @@ public class Server implements IServer {
     @Override
     public void sendCommand(String command) {
         for(ConnectedClient c: clients){
-            System.out.println("Sending");
+            //System.out.println("Sending");
             c.sendCommand(command);
         }
     }
@@ -87,6 +87,7 @@ public class Server implements IServer {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 if (line.length() > 0) {
+                    System.out.println(line);
                     command_handler.addCommandToExecute(line);
                 }
             }
@@ -101,10 +102,10 @@ public class Server implements IServer {
 
         /**
          * Sends a command to this client
-         *
          * @param command command to send
          */
         public void sendCommand(String command) {
+            System.out.println(command);
             writer.println(command);
         }
 
