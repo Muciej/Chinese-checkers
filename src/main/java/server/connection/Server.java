@@ -26,9 +26,8 @@ public class Server implements IServer {
         try {
             servSocket = new ServerSocket(port);
             threadPool = Executors.newFixedThreadPool(7);
-            threadPool.execute(new ClientAdder(servSocket));
-
-
+            threadPool.execute(new ClientAdder(servSocket, threadPool));
+            System.out.println("Server start complete");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -37,7 +36,7 @@ public class Server implements IServer {
     @Override
     public void sendCommand(String command) {
         for(ConnectedClient c: clients){
-            //System.out.println("Sending");
+            System.out.println("Sending: "+command);
             c.sendCommand(command);
         }
     }
@@ -68,11 +67,14 @@ public class Server implements IServer {
         PrintWriter writer;
 
         ConnectedClient(Socket s) {
+            System.out.println("Tu jestem1");
             clients.add(this);
             socket = s;
             try {
+                System.out.println("Tu jestem2");
                 scanner = new Scanner(socket.getInputStream());
                 writer = new PrintWriter(socket.getOutputStream(), true);
+                System.out.println("Tu jestem3");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -84,8 +86,11 @@ public class Server implements IServer {
          */
         @Override
         public void run() {
+            System.out.println("Tu jestem4");
+            System.out.println(scanner.hasNextLine());
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
+                System.out.println(line);
                 if (line.length() > 0) {
                     System.out.println(line);
                     command_handler.addCommandToExecute(line);
@@ -105,7 +110,7 @@ public class Server implements IServer {
          * @param command command to send
          */
         public void sendCommand(String command) {
-            System.out.println(command);
+            //System.out.println(command);
             writer.println(command);
         }
 
@@ -120,9 +125,11 @@ public class Server implements IServer {
 
     private class ClientAdder implements Runnable{
         ServerSocket socket;
+        ExecutorService pool;
 
-        ClientAdder(ServerSocket socket){
+        ClientAdder(ServerSocket socket, ExecutorService pool){
             this.socket = socket;
+            this.pool = pool;
         }
 
         @Override
@@ -130,7 +137,8 @@ public class Server implements IServer {
             try{
                 while(running){
                     Socket s = socket.accept();
-                    threadPool.execute(new ConnectedClient(s));
+                    System.out.println("New client connected");
+                    pool.execute(new ConnectedClient(s));
                 }
             }catch (IOException e){
                 e.printStackTrace();

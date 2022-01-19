@@ -22,7 +22,7 @@ public class ChineseCheckerServer {
     BaseHandler commandHandler;
 
     ChineseCheckerServer(){
-        server = new Server(this, 55000);
+        server = new Server(this, 60000);
         commands = new ArrayList<>();
         players = new ArrayList<>();
         playOrder = new ArrayList<>();

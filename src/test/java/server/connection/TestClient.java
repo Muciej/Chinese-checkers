@@ -9,7 +9,7 @@ public class TestClient {
     Socket socket;
     PrintWriter to_serv;
     Scanner from_serv;
-    TestClient(int port){
+    public TestClient(int port){
         try {
             this.socket = new Socket("localhost", port);
             to_serv = new PrintWriter(socket.getOutputStream(), true);

@@ -22,11 +22,12 @@ public class ClientFacade {
         serverConnect = new ServerConnect("localhost", 60000, this);
         mainWindow = new MainWindow(this);
         startPnl = new StartPnl(this);
-        startPnl.setVisible(true);
         board = new Board(this);
-        board.setVisible(false);
-        mainWindow.add(startPnl, BorderLayout.CENTER);
-        mainWindow.add(board, BorderLayout.CENTER);
+        mainWindow.add(startPnl);
+        //mainWindow.add(board);
+        startPnl.setVisible(true);
+        //board.setVisible(false);
+        mainWindow.setVisible(true);
 
         IHandler first = new StartHandler(this);
         IHandler second = new MoveHandler(this);

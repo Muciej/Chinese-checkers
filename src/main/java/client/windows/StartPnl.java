@@ -1,6 +1,7 @@
 package client.windows;
 
 import client.facade.ClientFacade;
+import com.sun.tools.javac.Main;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,23 +14,35 @@ public class StartPnl extends JPanel implements ActionListener {
     JButton startBtn;
     JTextField nameField;
     JTextField color;
+    MainWindow mainWindow;
 
     public StartPnl(ClientFacade facade){
         this.facade = facade;
-        this.setBackground(new Color(184, 5, 255));
-        this.setLayout(new GridLayout(1,0, 20,20));
+        this.mainWindow = facade.getMainWindow();
+        this.setBackground(mainWindow.getBcgrndCol().brighter());
+        this.setLayout(new GridLayout(3,1, 0,0));
+        JPanel panel = new JPanel();
+        JPanel blankPanel1 = new JPanel();
+        blankPanel1.setBackground(mainWindow.getBcgrndCol().brighter());
+        JPanel blankPanel2 = new JPanel();
+        blankPanel2.setBackground(mainWindow.getBcgrndCol().brighter());
         startBtn = new JButton("Start game");
         startBtn.setActionCommand("START");
         startBtn.addActionListener(this);
         playerBtn = new JButton("Join game");
         playerBtn.setActionCommand("ADD");
         playerBtn.addActionListener(this);
-        nameField = new JTextField();
-        color = new JTextField();
-        add(nameField);
-        add(color);
-        add(playerBtn);
-        add(startBtn);
+        nameField = new JTextField("Write your name");
+        color = new JTextField("R G B of your color");
+        panel.setBackground(mainWindow.getBcgrndCol().brighter());
+        panel.setLayout(new GridLayout(1,4,20,20));
+        panel.add(nameField);
+        panel.add(color);
+        panel.add(playerBtn);
+        panel.add(startBtn);
+        this.add(blankPanel1);
+        this.add(panel);
+        this.add(blankPanel2);
     }
 
     void addPlayer(){
@@ -41,7 +54,7 @@ public class StartPnl extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if ("start".equals(e.getActionCommand())){
+        if ("START".equals(e.getActionCommand())){
             facade.sendCommand("START");
         } else if (e.getActionCommand().equals("ADD")){
             addPlayer();

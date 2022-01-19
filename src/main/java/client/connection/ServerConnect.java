@@ -15,19 +15,18 @@ public class ServerConnect {
 
     Socket socket;
     ExecutorService threadPool;
-    Scanner servScanner;
     PrintWriter servWriter;
     public ServerConnect(String host, int port, ClientFacade facade){
         this.facade = facade;
         try {
             socket = new Socket(host, port);
-            servScanner = new Scanner(socket.getInputStream());
             servWriter = new PrintWriter(socket.getOutputStream());
+            threadPool = Executors.newFixedThreadPool(1);
+            threadPool.execute(new ServerReader(socket, facade));
         } catch (IOException e) {
             e.printStackTrace();
         }
-       threadPool = Executors.newFixedThreadPool(1);
-       threadPool.execute(new ServerReader(socket, facade));
+
     }
 
     public void sendCommand(String command){
@@ -52,6 +51,11 @@ public class ServerConnect {
         ServerReader(Socket s, ClientFacade facade){
             sock = s;
             fac = facade;
+            try {
+                scanner = new Scanner(sock.getInputStream());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         @Override
