@@ -75,6 +75,9 @@ public class ClientFacade {
 
     public void setStartView() {
         startPnl.setVisible(false);
+        mainWindow.remove(startPnl);
+        mainWindow.add(board);
+        mainWindow.setSize(1000, 1000);
         board.setVisible(true);
     }
 }

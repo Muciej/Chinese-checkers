@@ -18,7 +18,7 @@ public class MessageHandler extends BaseHandler{
         if(command.startsWith("MESSAGE")){
 
             //wzór komendy: MESSAGE NazwaGracza wiadomość
-            manager.sendCommand("ALL "+command);
+            manager.sendCommand("ALL POPUP"+command.substring("MESSAGE".length())+1);
 
         } else{
             if(next != null) next.handle(command);
