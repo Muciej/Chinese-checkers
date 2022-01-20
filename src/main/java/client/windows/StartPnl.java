@@ -33,7 +33,9 @@ public class StartPnl extends JPanel implements ActionListener {
         playerBtn.setActionCommand("ADD");
         playerBtn.addActionListener(this);
         nameField = new JTextField("Write your name");
+        nameField.setText("Muciej");
         color = new JTextField("R G B of your color");
+        color.setText("120 210 120");
         panel.setBackground(mainWindow.getBcgrndCol().brighter());
         panel.setLayout(new GridLayout(1,4,20,20));
         panel.add(nameField);

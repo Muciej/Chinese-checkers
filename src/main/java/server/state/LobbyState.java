@@ -19,6 +19,7 @@ public class LobbyState extends State {
         IHandler third = new MessageHandler(context);
         first.setNext(second);
         second.setNext(third);
+        third.setNext(null);
 
         return first;
     }

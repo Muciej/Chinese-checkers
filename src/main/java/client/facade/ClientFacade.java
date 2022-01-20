@@ -45,6 +45,7 @@ public class ClientFacade {
         try {
             System.out.println(command);
             if(command.startsWith(playerName)) chain.handle(command.substring(playerName.length()+1));
+            if(command.startsWith("ALL")) chain.handle(command.substring(4));
         } catch (IllegalCommandException e) {
             System.out.println(e.getMessage());
         }
@@ -52,7 +53,7 @@ public class ClientFacade {
 
     public void sendCommand(String command){
         System.out.println(command);
-        serverConnect.sendCommand(playerName + " " + command);
+        serverConnect.sendCommand(command);
 
     }
 

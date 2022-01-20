@@ -39,6 +39,7 @@ public class ChineseCheckerServer {
                 for(String c: commands){
                     commandHandler.handle(c);
                 }
+                commands.clear();
             }
 
         } catch (IllegalCommandException e) {
