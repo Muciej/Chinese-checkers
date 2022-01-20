@@ -26,11 +26,13 @@ public class AddPlayerHandler extends BaseHandler{
             Color c = new Color(Integer.parseInt(tab[2]), Integer.parseInt(tab[3]), Integer.parseInt(tab[4]));
             Player player = new Player(tab[1], c);
             manager.getPlayers().add(player);
-            //manager.sendCommand(tab[1] + " CONFRIMPLAYER true");
+            System.out.println("Added new player: "+player.getName() + " " + player.getColor().toString());
         }
         else {
             if( next != null) {
                 next.handle(command);
+            } else{
+                System.out.println("Unrecognized command");
             }
         }
     }

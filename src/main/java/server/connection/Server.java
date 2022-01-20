@@ -37,13 +37,12 @@ public class Server implements IServer {
     @Override
     public void sendCommand(String command) {
         while(connecting){
-            System.out.println("Waiting");
+            System.out.print("w");
         }
         System.out.println("In sendCommand. Connected clients: " + clients.size());
         for(ConnectedClient c: clients){
             System.out.println("Sending: "+command);
             c.sendCommand(command);
-            System.out.println("Connected clients: " + clients.size());
         }
     }
 
@@ -94,11 +93,9 @@ public class Server implements IServer {
             System.out.println("Client starting");
             connecting = false;
             while (scanner.hasNextLine()) {
-                System.out.println("eeeee");
                 String line = scanner.nextLine();
                 System.out.println(line);
                 if (line.length() > 0) {
-                    System.out.println(line);
                     command_handler.addCommandToExecute(line);
                 }
             }

@@ -4,6 +4,7 @@ import server.connection.IServer;
 import server.connection.Server;
 import server.handler.BaseHandler;
 import server.board.Board;
+import server.handler.IHandler;
 import server.state.IllegalCommandException;
 import server.state.LobbyState;
 import server.state.State;
@@ -19,16 +20,17 @@ public class ChineseCheckerServer {
     ArrayList<String> commands;
     Player currentPlayer;
     State currentState;
-    BaseHandler commandHandler;
+    IHandler commandHandler;
 
     ChineseCheckerServer(){
-        server = new Server(this, 60000);
         commands = new ArrayList<>();
         players = new ArrayList<>();
         playOrder = new ArrayList<>();
         currentPlayer = null;
         board = new Board(this, "Chinese-checkers.bd");
         currentState = new LobbyState(this);
+        commandHandler =  currentState.getHandler();
+        server = new Server(this, 60000);
     }
 
     private synchronized void executeCommands() {

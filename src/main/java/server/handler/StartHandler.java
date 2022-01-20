@@ -77,6 +77,8 @@ public class StartHandler extends BaseHandler{
 
         } else if (next != null) {
             next.handle(command);
+        }else{
+            System.out.println("Unrecognized command");
         }
     }
 }

@@ -34,6 +34,8 @@ public class CheckHandler extends BaseHandler{
 
         if(next != null){
             next.handle(command);
+        }else{
+            System.out.println("Unrecognized command");
         }
     }
 }

@@ -20,6 +20,9 @@ public class QuitHandler extends BaseHandler{
             manager.sendCommand("ALL QUIT");
         } else{
             if(next != null) next.handle(command);
+            else{
+                System.out.println("Unrecognized command");
+            }
         }
     }
 }
