@@ -20,7 +20,7 @@ public class ServerConnect {
         this.facade = facade;
         try {
             socket = new Socket(host, port);
-            servWriter = new PrintWriter(socket.getOutputStream());
+            servWriter = new PrintWriter(socket.getOutputStream(), true);
             threadPool = Executors.newFixedThreadPool(1);
             threadPool.execute(new ServerReader(socket, facade));
         } catch (IOException e) {
@@ -30,6 +30,7 @@ public class ServerConnect {
     }
 
     public void sendCommand(String command){
+        System.out.println("Sending: "+command + " to server.");
         servWriter.println(command);
     }
 

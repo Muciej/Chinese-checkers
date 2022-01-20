@@ -19,14 +19,15 @@ public class Server implements IServer {
     ExecutorService threadPool;
     ServerSocket servSocket;
     boolean running = true;
+    boolean connecting = true;
 
     public Server(ChineseCheckerServer ccs, int port){
         clients = new ArrayList<>();
         command_handler = ccs;
         try {
             servSocket = new ServerSocket(port);
-            threadPool = Executors.newFixedThreadPool(7);
-            threadPool.execute(new ClientAdder(servSocket, threadPool));
+            threadPool = Executors.newFixedThreadPool(1);
+            threadPool.execute(new ClientAdder(servSocket));
             System.out.println("Server start complete");
         } catch (IOException e) {
             e.printStackTrace();
@@ -35,9 +36,14 @@ public class Server implements IServer {
 
     @Override
     public void sendCommand(String command) {
+        while(connecting){
+            System.out.println("Waiting");
+        }
+        System.out.println("In sendCommand. Connected clients: " + clients.size());
         for(ConnectedClient c: clients){
             System.out.println("Sending: "+command);
             c.sendCommand(command);
+            System.out.println("Connected clients: " + clients.size());
         }
     }
 
@@ -67,16 +73,15 @@ public class Server implements IServer {
         PrintWriter writer;
 
         ConnectedClient(Socket s) {
-            System.out.println("Tu jestem1");
-            clients.add(this);
             socket = s;
             try {
-                System.out.println("Tu jestem2");
                 scanner = new Scanner(socket.getInputStream());
                 writer = new PrintWriter(socket.getOutputStream(), true);
-                System.out.println("Tu jestem3");
+                clients.add(this);
+                System.out.println("Client initiated");
+
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println("Nie udało się otworzyć kanałów komunikacji dla klienta");
             }
         }
 
@@ -86,9 +91,10 @@ public class Server implements IServer {
          */
         @Override
         public void run() {
-            System.out.println("Tu jestem4");
-            System.out.println(scanner.hasNextLine());
+            System.out.println("Client starting");
+            connecting = false;
             while (scanner.hasNextLine()) {
+                System.out.println("eeeee");
                 String line = scanner.nextLine();
                 System.out.println(line);
                 if (line.length() > 0) {
@@ -110,7 +116,7 @@ public class Server implements IServer {
          * @param command command to send
          */
         public void sendCommand(String command) {
-            //System.out.println(command);
+            System.out.println(command);
             writer.println(command);
         }
 
@@ -127,9 +133,9 @@ public class Server implements IServer {
         ServerSocket socket;
         ExecutorService pool;
 
-        ClientAdder(ServerSocket socket, ExecutorService pool){
+        ClientAdder(ServerSocket socket){
             this.socket = socket;
-            this.pool = pool;
+            pool = Executors.newFixedThreadPool(6);
         }
 
         @Override
@@ -137,8 +143,10 @@ public class Server implements IServer {
             try{
                 while(running){
                     Socket s = socket.accept();
+                    connecting = true;
                     System.out.println("New client connected");
-                    pool.execute(new ConnectedClient(s));
+                    ConnectedClient client = new ConnectedClient(s);
+                    pool.execute(client);
                 }
             }catch (IOException e){
                 e.printStackTrace();
