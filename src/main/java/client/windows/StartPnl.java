@@ -59,6 +59,8 @@ public class StartPnl extends JPanel implements ActionListener {
         if ("START".equals(e.getActionCommand())){
             facade.sendCommand("START");
         } else if (e.getActionCommand().equals("ADD")){
+            nameField.setVisible(false);
+            color.setVisible(false);
             addPlayer();
         }
     }

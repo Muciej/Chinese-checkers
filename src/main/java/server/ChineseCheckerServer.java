@@ -43,7 +43,7 @@ public class ChineseCheckerServer {
             }
 
         } catch (IllegalCommandException e) {
-            sendCommand("ERROR" + e.getMessage());
+            sendCommand("ERROR " + e.getMessage());
         }
     }
 

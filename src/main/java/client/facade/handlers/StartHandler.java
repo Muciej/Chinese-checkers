@@ -22,7 +22,7 @@ public class StartHandler extends BaseHandler {
         //wzór komendy START
 
         if(command.startsWith("START")){
-            facade.setStartView();
+            facade.setBoardView();
         } else{
             if(next != null) next.handle(command);
         }

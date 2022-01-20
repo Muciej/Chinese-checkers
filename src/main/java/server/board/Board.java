@@ -72,7 +72,7 @@ public class Board {
         for(int i=0; i<height; i++){
             for(int j=0; j<width; j++){
                 Field tempField = fields[j][i];
-                if(tempField.getStartFieldNo() == posNo){
+                if(tempField != null && tempField.getStartFieldNo() == posNo){
                     tempField.setOccupant(occupant);
                     tempField.setColor(color);
                 }

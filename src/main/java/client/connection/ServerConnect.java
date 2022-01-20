@@ -16,13 +16,15 @@ public class ServerConnect {
     Socket socket;
     ExecutorService threadPool;
     PrintWriter servWriter;
+    ServerReader reader;
     public ServerConnect(String host, int port, ClientFacade facade){
         this.facade = facade;
         try {
             socket = new Socket(host, port);
             servWriter = new PrintWriter(socket.getOutputStream(), true);
             threadPool = Executors.newFixedThreadPool(1);
-            threadPool.execute(new ServerReader(socket, facade));
+            reader = new ServerReader(socket,facade);
+            threadPool.execute(reader);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -41,6 +43,10 @@ public class ServerConnect {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public Scanner getScanner(){
+        return reader.getScanner();
     }
 
     private static class ServerReader implements Runnable{
@@ -64,6 +70,10 @@ public class ServerConnect {
             while(scanner.hasNextLine()){
                 fac.executeCommand(scanner.nextLine());
             }
+        }
+
+        public Scanner getScanner(){
+            return scanner;
         }
     }
 }

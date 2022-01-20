@@ -8,6 +8,7 @@ import client.windows.StartPnl;
 import server.state.IllegalCommandException;
 
 import java.awt.*;
+import java.util.Scanner;
 
 public class ClientFacade {
 
@@ -24,9 +25,7 @@ public class ClientFacade {
         startPnl = new StartPnl(this);
         board = new Board(this);
         mainWindow.add(startPnl);
-        //mainWindow.add(board);
-        startPnl.setVisible(true);
-        //board.setVisible(false);
+        setStartView();
         mainWindow.setVisible(true);
 
         IHandler first = new StartHandler(this);
@@ -74,10 +73,21 @@ public class ClientFacade {
     }
 
     public void setStartView() {
-        startPnl.setVisible(false);
+        mainWindow.remove(board);
+        mainWindow.add(startPnl);
+        startPnl.setVisible(true);
+        board.setVisible(false);
+    }
+
+    public void setBoardView(){
         mainWindow.remove(startPnl);
         mainWindow.add(board);
-        mainWindow.setSize(1000, 1000);
         board.setVisible(true);
+        startPnl.setVisible(false);
+        mainWindow.setSize(1000, 1000);
+    }
+
+    public Scanner getScanner(){
+        return serverConnect.getScanner();
     }
 }
