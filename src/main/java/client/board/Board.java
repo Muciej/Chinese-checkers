@@ -58,7 +58,8 @@ public class Board extends JPanel {
                     if(occupied){
                         fields[j][i] = new OccupiedField(this, j,i,idInt, bcgrndCol, tempCol);
                     } else{
-                        fields[j][i] = new FreeField(this,j,i,0, bcgrndCol);
+                        fields[j][i] = new OccupiedField(this,j,i,0, bcgrndCol, Color.black);
+                        fields[j][i].setField(Color.black, 0.7);
                     }
                     fields[j][i].addMouseListener(fields[j][i]);
                 }
@@ -74,11 +75,12 @@ public class Board extends JPanel {
     }
 
     public void doMove(int fromX, int fromY, int toX, int toY){
+        /*
         Field oldField = fields[fromX][fromY];
         Field newField = fields[toX][toY];
         Field tempField = new OccupiedField(this, toX, toY,newField.getStartNo(), bcgrndCol, oldField.getFigCol());
         fields[toX][toY] = tempField;
-        tempField = new FreeField(this, fromX, fromY, oldField.getStartNo(), bcgrndCol);
+        tempField = new OccupiedField(this, fromX, fromY, oldField.getStartNo(), bcgrndCol);
         fields[fromX][fromY] = tempField;
         unhighlight();
         for(int i = 0; i < height; i++){
@@ -86,6 +88,12 @@ public class Board extends JPanel {
                 fields[j][i].repaint();
             }
         }
+
+         */
+        unhighlight();
+        fields[toX][toY].setField(fields[fromX][fromY].getFigCol(), 1.0);
+        fields[fromX][fromY].setField(Color.BLACK, 0.7);
+        repaint();
     }
 
     private class startFieldCol{

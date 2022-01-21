@@ -27,7 +27,7 @@ public class CheckHandler extends BaseHandler{
         for(Player p: manager.getPlayers()){
             if(board.checkPos(p.getName(), p.getDest())){
                 manager.setCurrentState(new GameEndState(manager));
-                manager.sendCommand("ALL GAMEEND "+p.getName());
+                manager.sendCommand("ALL POPUP Game ended. Winner is: "+p.getName());
                 break;
             }
         }

@@ -12,4 +12,5 @@ public abstract class Field extends JPanel implements MouseListener {
     public abstract Color getFigCol();
     public abstract int getStartNo();
     public abstract void setStroke(boolean isStroked);
+    public abstract void setField(Color fig_col, double scale);
 }

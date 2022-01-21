@@ -27,6 +27,11 @@ public class MCircle extends Ellipse2D.Double {
         setFrame(0, 0, cHeight*scale, cWidth*scale);
     }
 
+    public void set(double scale, Color col){
+        setFrame(0,0, cHeight*scale, cWidth*scale);
+        this.color = col;
+    }
+
     public void setStroked(boolean isStroked){
         this.isStroked = isStroked;
     }

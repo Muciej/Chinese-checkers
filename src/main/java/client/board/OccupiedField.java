@@ -43,6 +43,13 @@ public class OccupiedField extends Field{
     }
 
     @Override
+    public void setField(Color fig_col, double scale) {
+        this.figCol = fig_col;
+        circle.set(scale, fig_col);
+        repaint();
+    }
+
+    @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         circle.fill((Graphics2D)g);

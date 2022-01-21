@@ -42,6 +42,11 @@ public class FreeField extends Field{
     }
 
     @Override
+    public void setField(Color fig_col, double scale) {
+
+    }
+
+    @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         circle.fill((Graphics2D) g);

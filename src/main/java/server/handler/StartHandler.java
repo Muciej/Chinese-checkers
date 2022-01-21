@@ -39,6 +39,7 @@ public class StartHandler extends BaseHandler{
                     p.setDest(destPositions[i]);
                     manager.addToPlayorder(p);
                     board.fillPos(p.getName(), p.getStart(), p.getColor());
+                    System.out.println("Added player: "+p.getName() +" " + p.getStart() + " " + p.getDest());
                     i++;
                 }
                 manager.setCurrentPlayer(manager.getPlayOrder().get(0));

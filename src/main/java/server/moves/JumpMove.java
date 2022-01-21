@@ -45,13 +45,23 @@ public class JumpMove implements IMove {
             currY += dy;
             //sprawdza, czy docelowe pole do skoku jest puste i czy w ogóle istnieje
             if(isLegalField(currX, currY) && board.getField(currX, currY).getOccupant() == null){
-                avalMoves.add(new Move(playerName, fromX, fromY, currX, currY));
-                if(1 != -dx || 1 != -dy) checkJump(currX, currY, 1, 1);
-                if(1 != -dx || -1 != -dy) checkJump(currX, currY, 1, -1);
-                if(-1 != -dx || 1 != -dy) checkJump(currX, currY, -1, 1);
-                if(-1 != -dx || -1 != -dy) checkJump(currX, currY, -1, -1);
-                if(2 != -dx || 0 != -dy) checkJump(currX, currY, 2,0);
-                if(-2 != -dx || 0 != -dy) checkJump(currX, currY, -2,0);
+                Move tempMove = new Move(playerName, fromX, fromY, currX, currY);
+                boolean isNew = true;
+                for(Move m: avalMoves){
+                    if (m.toX == tempMove.toX && m.toY == tempMove.toY) {
+                        isNew = false;
+                        break;
+                    }
+                }
+                if(isNew){
+                    avalMoves.add(tempMove);
+                    if (1 != -dx || 1 != -dy) checkJump(currX, currY, 1, 1);
+                    if (1 != -dx || -1 != -dy) checkJump(currX, currY, 1, -1);
+                    if (-1 != -dx || 1 != -dy) checkJump(currX, currY, -1, 1);
+                    if (-1 != -dx || -1 != -dy) checkJump(currX, currY, -1, -1);
+                    if (2 != -dx || 0 != -dy) checkJump(currX, currY, 2, 0);
+                    if (-2 != -dx || 0 != -dy) checkJump(currX, currY, -2, 0);
+                }
             }
         }
     }

@@ -29,6 +29,11 @@ public class NoField extends Field {
     }
 
     @Override
+    public void setField(Color fig_col, double scale) {
+
+    }
+
+    @Override
     public void mouseClicked(MouseEvent e) {
     }
 
