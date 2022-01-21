@@ -6,19 +6,20 @@ import java.awt.geom.Ellipse2D;
 public class MCircle extends Ellipse2D.Double {
 
     Color color;
+    final int cHeight = 40;
+    final int cWidth = 40;
 
-    public MCircle(Color color, double pnlheight, double pnlwidth, double scale){
+    public MCircle(Color color, double scale){
         this.color = color;
-        set(pnlheight, pnlwidth, scale);
+        set(scale);
     }
 
     public void fill(Graphics2D g){
         g.setPaint(color);
-        g.setColor(color);
         g.fill(this);
     }
 
-    public void set(double height, double width, double scale){
-        setFrame(0, 0, height*scale, width*scale);
+    public void set(double scale){
+        setFrame(0, 0, cHeight*scale, cWidth*scale);
     }
 }

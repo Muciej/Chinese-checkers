@@ -17,7 +17,7 @@ public class FreeField extends Field{
         this.bcgrndCol = bcgrndCol;
         setBackground(this.bcgrndCol);
         setLayout(new GridLayout(1,1));
-        circle = new MCircle(freeColor, getHeight(), getWidth(), freeScale);
+        circle = new MCircle(freeColor, freeScale);
         //add(new JTextField("Free"));
         repaint();
     }
@@ -33,14 +33,9 @@ public class FreeField extends Field{
     }
 
     @Override
-    public void refreshSize() {
-        circle.set(getHeight(), getWidth(), freeScale);
-        repaint();
-    }
-
-    @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        ((Graphics2D)g).draw(circle);
+        circle.fill((Graphics2D) g);
+        //((Graphics2D)g).draw(circle);
     }
 }

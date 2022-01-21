@@ -20,9 +20,4 @@ public class NoField extends Field {
     public int getStartNo() {
         return -1;
     }
-
-    @Override
-    public void refreshSize() {
-        //nothing
-    }
 }

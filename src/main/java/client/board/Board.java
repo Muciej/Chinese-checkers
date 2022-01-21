@@ -95,12 +95,4 @@ public class Board extends JPanel {
             return color;
         }
     }
-
-    public void refreshSize(){
-        for(int i=0; i<height; i++){
-            for(int j=0; j<width; j++){
-                fields[j][i].refreshSize();
-            }
-        }
-    }
 }

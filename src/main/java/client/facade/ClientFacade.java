@@ -85,7 +85,6 @@ public class ClientFacade {
         board.setVisible(true);
         startPnl.setVisible(false);
         mainWindow.setSize(1000, 1000);
-        board.refreshSize();
     }
 
     public Scanner getScanner(){

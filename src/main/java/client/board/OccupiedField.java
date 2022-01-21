@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class OccupiedField extends Field{
 
-    final double ocScale = 0.8;
+    final double ocScale = 1.0;
 
     int startPos;
     Color bcgrndCol, figCol;
@@ -17,7 +17,7 @@ public class OccupiedField extends Field{
         this.figCol = figCol;
         setLayout(new GridLayout(1,1));
         setBackground(this.bcgrndCol);
-        circle = new MCircle(figCol, getHeight(), getWidth(), ocScale);
+        circle = new MCircle(figCol, ocScale);
         //add(new JTextField("Occupied"));
         repaint();
     }
@@ -30,11 +30,6 @@ public class OccupiedField extends Field{
     @Override
     public int getStartNo() {
         return startPos;
-    }
-
-    @Override
-    public void refreshSize() {
-        circle.set(getHeight(), getWidth(), ocScale);
     }
 
     @Override
