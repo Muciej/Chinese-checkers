@@ -20,6 +20,7 @@ public class Server implements IServer {
     ServerSocket servSocket;
     boolean running = true;
     boolean connecting = true;
+    ClientAdder clientAdder;
 
     public Server(ChineseCheckerServer ccs, int port){
         clients = new ArrayList<>();
@@ -27,7 +28,8 @@ public class Server implements IServer {
         try {
             servSocket = new ServerSocket(port);
             threadPool = Executors.newFixedThreadPool(1);
-            threadPool.execute(new ClientAdder(servSocket));
+            clientAdder = new ClientAdder(servSocket);
+            threadPool.execute(clientAdder);
             System.out.println("Server start complete");
         } catch (IOException e) {
             e.printStackTrace();
@@ -46,14 +48,20 @@ public class Server implements IServer {
         }
     }
 
+    private void checkServ(){
+        if(clients.size() == 0) stopServer();
+    }
+
     @Override
     public void stopServer() {
         running = false;
+        clientAdder.stop();
         for(ConnectedClient c: clients){
             c.stop();
         }
         clients.clear();
-        threadPool.shutdown();
+        threadPool.shutdownNow();
+        System.out.println("Server stopped");
     }
 
     public int connected(){
@@ -103,6 +111,7 @@ public class Server implements IServer {
             try {
                 socket.close();
                 System.out.println("Closed connection with client");
+                checkServ();
             } catch (IOException e) {
                 System.out.println("Error when closing connection with client");
             }
@@ -146,6 +155,15 @@ public class Server implements IServer {
                     pool.execute(client);
                 }
             }catch (IOException e){
+                System.out.println("Socket closed");
+            }
+        }
+
+        public void stop(){
+            pool.shutdownNow();
+            try{
+                socket.close();
+            } catch(IOException e){
                 e.printStackTrace();
             }
         }

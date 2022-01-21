@@ -18,6 +18,6 @@ public class MCircle extends Ellipse2D.Double {
     }
 
     public void set(double height, double width, double scale){
-        setFrame(height/2, width/2, height*scale, width*scale);
+        setFrame(0, 0, height*scale, width*scale);
     }
 }

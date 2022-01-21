@@ -47,7 +47,7 @@ public class StartHandler extends BaseHandler{
                 manager.sendCommand("ALL INIT "+board.getWidth() + " " + board.getHeight()+ " "+ manager.getPlayerCount());
                 for(Player p: manager.getPlayers()){
                     String line = null;
-                    line = p.getName() + " ";
+                    line = p.getStart() + " ";
                     line += p.getColor().getRed() + " ";
                     line += p.getColor().getGreen() + " ";
                     line += p.getColor().getBlue() + " ";
@@ -68,7 +68,7 @@ public class StartHandler extends BaseHandler{
                     }
                     manager.sendCommand(line.toString());
                 }
-
+                System.out.println("Initialization finished");
                 manager.setCurrentState(new GameStartedState(manager));
 
             } else {

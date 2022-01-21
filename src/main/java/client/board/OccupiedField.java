@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class OccupiedField extends Field{
 
-    final double ocScale = 0.7;
+    final double ocScale = 0.8;
 
     int startPos;
     Color bcgrndCol, figCol;
@@ -12,9 +12,10 @@ public class OccupiedField extends Field{
 
     OccupiedField(int startPos, Color bcgrndCol, Color figCol) {
         this.startPos = startPos;
-        this.bcgrndCol = bcgrndCol;
+        this.bcgrndCol = bcgrndCol.brighter();
         this.figCol = figCol;
         circle = new MCircle(figCol, getHeight(), getWidth(), ocScale);
+        setBackground(bcgrndCol);
     }
 
     @Override

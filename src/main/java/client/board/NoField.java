@@ -8,7 +8,7 @@ public class NoField extends Field {
 
     NoField(Color bcgrndCol){
         color = bcgrndCol;
-        setBackground(color);
+        setBackground(color.darker());
     }
 
     @Override

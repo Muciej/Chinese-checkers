@@ -18,10 +18,11 @@ public class Board extends JPanel {
         this.facade = facade;
     }
 
-    public void initBoard(Scanner scanner, int height, int width, int occupiedStartFields){
+    public void initBoard(Scanner scanner, int width, int height, int occupiedStartFields){
+
         this.height = height;
         this.width = width;
-        fields = new Field[height][width];
+        fields = new Field[width][height];
 
         setLayout(new GridLayout(height, width, 0, 0));
 
@@ -66,6 +67,7 @@ public class Board extends JPanel {
             }
         }
         repaint();
+        System.out.println("Board init completed");
     }
 
     public void doMove(int fromX, int fromY, int toX, int toY){
