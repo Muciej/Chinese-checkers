@@ -35,6 +35,7 @@ public class MoveHandler extends BaseHandler {
                 toSend += move.fromX + " " + move.fromY + " ";
                 toSend += move.toX + " " + move.toY;
                 manager.sendCommand(toSend);
+                manager.nextPlayer();
             } else{
                 //informacja o nieprawidłowym ruchu
                 manager.sendCommand(tab[0] + " MESSAGE Nie wolno Ci wykonać takiego ruchu");

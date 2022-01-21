@@ -20,7 +20,6 @@ public class StartHandler extends BaseHandler {
     public void handle(String command) throws IllegalCommandException {
 
         //wzór komendy START
-
         if(command.startsWith("START")){
             facade.setBoardView();
         } else{

@@ -21,9 +21,10 @@ public class MoveHandler extends BaseHandler{
     @Override
     public void handle(String command) throws IllegalCommandException {
 
-        //wzór komendy MOVE fromX fromy toX toY
-
-        if(command.startsWith("MOVE")){
+        //wzór komendy INTERCHANGE fromX fromy toX toY
+        //System.out.println("In movehandler: "+command);
+        if(command.startsWith("INTERCHANGE")){
+            System.out.println("Changing board");
             String[] tab = command.split(" ");
             if(tab.length < 5) throw new IllegalCommandException("Zły format komendy MOVE");
             int fromX, fromY, toX, toY;
@@ -32,7 +33,6 @@ public class MoveHandler extends BaseHandler{
             toX = Integer.parseInt(tab[3]);
             toY = Integer.parseInt(tab[4]);
             board.doMove(fromX, fromY, toX, toY);
-
         } else{
             if(next != null) next.handle(command);
         }

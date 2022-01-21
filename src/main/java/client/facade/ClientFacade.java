@@ -90,4 +90,8 @@ public class ClientFacade {
     public Scanner getScanner(){
         return serverConnect.getScanner();
     }
+
+    public String getName() {
+        return playerName;
+    }
 }

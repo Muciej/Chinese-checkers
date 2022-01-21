@@ -2,6 +2,7 @@ package client.board;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
 
 public class OccupiedField extends Field{
 
@@ -11,7 +12,10 @@ public class OccupiedField extends Field{
     Color bcgrndCol, figCol;
     MCircle circle;
 
-    OccupiedField(int startPos, Color bcgrndCol, Color figCol) {
+    OccupiedField(Board b, int x, int y, int startPos, Color bcgrndCol, Color figCol) {
+        board = b;
+        this.x = x;
+        this.y = y;
         this.startPos = startPos;
         this.bcgrndCol = bcgrndCol;
         this.figCol = figCol;
@@ -33,9 +37,42 @@ public class OccupiedField extends Field{
     }
 
     @Override
+    public void setStroke(boolean isStroked) {
+        circle.setStroked(isStroked);
+        repaint();
+    }
+
+    @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         circle.fill((Graphics2D)g);
-        ((Graphics2D)g).draw(circle);
+        //((Graphics2D)g).draw(circle);
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        board.unhighlight();
+        setStroke(true);
+        board.initiateMove(x,y);
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 }

@@ -13,6 +13,8 @@ public class Board extends JPanel {
     int width, height;
     Field[][] fields;
     startFieldCol[] startFieldTab;
+    boolean moving = false;
+    int from_x, from_y;
 
     public Board(ClientFacade facade){
         this.facade = facade;
@@ -40,7 +42,7 @@ public class Board extends JPanel {
             for(int j=0; j<width; j++){
                 char id = tempTab[j].charAt(0);
                 if(id == '*'){
-                    fields[j][i] = new NoField(bcgrndCol);
+                    fields[j][i] = new NoField(this, bcgrndCol);
                 } else{
                     boolean occupied = false;
                     Color tempCol = null;
@@ -54,10 +56,11 @@ public class Board extends JPanel {
                         }
                     }
                     if(occupied){
-                        fields[j][i] = new OccupiedField(idInt, bcgrndCol, tempCol);
+                        fields[j][i] = new OccupiedField(this, j,i,idInt, bcgrndCol, tempCol);
                     } else{
-                        fields[j][i] = new FreeField(0, bcgrndCol);
+                        fields[j][i] = new FreeField(this,j,i,0, bcgrndCol);
                     }
+                    fields[j][i].addMouseListener(fields[j][i]);
                 }
             }
         }
@@ -73,10 +76,16 @@ public class Board extends JPanel {
     public void doMove(int fromX, int fromY, int toX, int toY){
         Field oldField = fields[fromX][fromY];
         Field newField = fields[toX][toY];
-        Field tempField = new OccupiedField(newField.getStartNo(), bcgrndCol, oldField.getFigCol());
+        Field tempField = new OccupiedField(this, toX, toY,newField.getStartNo(), bcgrndCol, oldField.getFigCol());
         fields[toX][toY] = tempField;
-        tempField = new FreeField(oldField.getStartNo(), bcgrndCol);
+        tempField = new FreeField(this, fromX, fromY, oldField.getStartNo(), bcgrndCol);
         fields[fromX][fromY] = tempField;
+        unhighlight();
+        for(int i = 0; i < height; i++){
+            for(int j = 0; j<width; j++){
+                fields[j][i].repaint();
+            }
+        }
     }
 
     private class startFieldCol{
@@ -93,6 +102,26 @@ public class Board extends JPanel {
 
         public Color getColor() {
             return color;
+        }
+    }
+
+    public void unhighlight(){
+        for(int i = 0; i < height; i++){
+            for(int j = 0; j<width; j++){
+                fields[j][i].setStroke(false);
+            }
+        }
+    }
+
+    public void initiateMove(int x, int y){
+        if( !moving ){
+            from_x = x;
+            from_y = y;
+            moving = true;
+        } else {
+            facade.sendCommand("MOVE "+facade.getName() + " "+from_x + " " + from_y + " " +x + " "+ y);
+            moving = false;
+            unhighlight();
         }
     }
 }

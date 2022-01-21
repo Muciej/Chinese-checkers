@@ -1,12 +1,14 @@
 package client.board;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 
 public class NoField extends Field {
 
     Color color;
 
-    NoField(Color bcgrndCol){
+    NoField(Board b, Color bcgrndCol){
+        board = b;
         color = bcgrndCol;
         setBackground(color);
     }
@@ -19,5 +21,34 @@ public class NoField extends Field {
     @Override
     public int getStartNo() {
         return -1;
+    }
+
+    @Override
+    public void setStroke(boolean isStroked) {
+
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 }

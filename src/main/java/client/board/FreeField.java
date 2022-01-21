@@ -1,7 +1,7 @@
 package client.board;
 
-import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
 
 public class FreeField extends Field{
 
@@ -12,7 +12,10 @@ public class FreeField extends Field{
     Color bcgrndCol;
     MCircle circle;
 
-    FreeField(int startPos, Color bcgrndCol){
+    FreeField(Board b, int x, int y,int startPos, Color bcgrndCol){
+        board = b;
+        this.x = x;
+        this.y = y;
         this.startPos = startPos;
         this.bcgrndCol = bcgrndCol;
         setBackground(this.bcgrndCol);
@@ -33,9 +36,42 @@ public class FreeField extends Field{
     }
 
     @Override
+    public void setStroke(boolean isStroked) {
+        circle.setStroked(isStroked);
+        repaint();
+    }
+
+    @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         circle.fill((Graphics2D) g);
         //((Graphics2D)g).draw(circle);
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        board.unhighlight();
+        setStroke(true);
+        board.initiateMove(x,y);
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 }

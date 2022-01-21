@@ -19,6 +19,7 @@ public class ChineseCheckerServer {
     ArrayList<Player> playOrder;
     ArrayList<String> commands;
     Player currentPlayer;
+    int intCurrentPlayer;
     State currentState;
     IHandler commandHandler;
 
@@ -41,7 +42,6 @@ public class ChineseCheckerServer {
                 }
                 commands.clear();
             }
-
         } catch (IllegalCommandException e) {
             sendCommand("ERROR " + e.getMessage());
         }
@@ -59,6 +59,7 @@ public class ChineseCheckerServer {
 
     public void setCurrentState(State newState){
         currentState = newState;
+        commandHandler = currentState.getHandler();
     }
 
     public int getPlayerCount(){
@@ -97,5 +98,15 @@ public class ChineseCheckerServer {
 
     public ArrayList<Player> getPlayOrder() {
         return playOrder;
+    }
+
+    public void nextPlayer(){
+        if(intCurrentPlayer == playOrder.size()-1){
+            intCurrentPlayer = 0;
+            currentPlayer = playOrder.get(0);
+        } else {
+            intCurrentPlayer++;
+            currentPlayer = playOrder.get(intCurrentPlayer);
+        }
     }
 }
