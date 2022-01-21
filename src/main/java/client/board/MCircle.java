@@ -14,6 +14,7 @@ public class MCircle extends Ellipse2D.Double {
 
     public void fill(Graphics2D g){
         g.setPaint(color);
+        g.setColor(color);
         g.fill(this);
     }
 

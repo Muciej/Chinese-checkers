@@ -8,7 +8,7 @@ public class NoField extends Field {
 
     NoField(Color bcgrndCol){
         color = bcgrndCol;
-        setBackground(color.darker());
+        setBackground(color);
     }
 
     @Override
@@ -19,5 +19,10 @@ public class NoField extends Field {
     @Override
     public int getStartNo() {
         return -1;
+    }
+
+    @Override
+    public void refreshSize() {
+        //nothing
     }
 }

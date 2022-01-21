@@ -1,5 +1,6 @@
 package client.board;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class OccupiedField extends Field{
@@ -12,10 +13,13 @@ public class OccupiedField extends Field{
 
     OccupiedField(int startPos, Color bcgrndCol, Color figCol) {
         this.startPos = startPos;
-        this.bcgrndCol = bcgrndCol.brighter();
+        this.bcgrndCol = bcgrndCol;
         this.figCol = figCol;
+        setLayout(new GridLayout(1,1));
+        setBackground(this.bcgrndCol);
         circle = new MCircle(figCol, getHeight(), getWidth(), ocScale);
-        setBackground(bcgrndCol);
+        //add(new JTextField("Occupied"));
+        repaint();
     }
 
     @Override
@@ -29,8 +33,14 @@ public class OccupiedField extends Field{
     }
 
     @Override
+    public void refreshSize() {
+        circle.set(getHeight(), getWidth(), ocScale);
+    }
+
+    @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         circle.fill((Graphics2D)g);
+        ((Graphics2D)g).draw(circle);
     }
 }

@@ -1,7 +1,7 @@
 package client.board;
 
+import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.Ellipse2D;
 
 public class FreeField extends Field{
 
@@ -15,9 +15,11 @@ public class FreeField extends Field{
     FreeField(int startPos, Color bcgrndCol){
         this.startPos = startPos;
         this.bcgrndCol = bcgrndCol;
-        setBackground(bcgrndCol);
+        setBackground(this.bcgrndCol);
         setLayout(new GridLayout(1,1));
         circle = new MCircle(freeColor, getHeight(), getWidth(), freeScale);
+        //add(new JTextField("Free"));
+        repaint();
     }
 
     @Override
@@ -31,8 +33,14 @@ public class FreeField extends Field{
     }
 
     @Override
+    public void refreshSize() {
+        circle.set(getHeight(), getWidth(), freeScale);
+        repaint();
+    }
+
+    @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        circle.fill((Graphics2D)g);
+        ((Graphics2D)g).draw(circle);
     }
 }
