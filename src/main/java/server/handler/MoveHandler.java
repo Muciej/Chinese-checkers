@@ -43,12 +43,8 @@ public class MoveHandler extends BaseHandler {
                 manager.sendCommand(tab[0] + " MESSAGE Nie wolno Ci wykonać takiego ruchu");
             }
         }
-        else {
-            if( next != null) {
-                next.handle(command);
-            }else{
-                System.out.println("Unrecognized command");
-            }
+        if( next != null) {
+            next.handle(command);
         }
     }
 }

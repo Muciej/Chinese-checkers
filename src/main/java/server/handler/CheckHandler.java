@@ -23,19 +23,17 @@ public class CheckHandler extends BaseHandler{
         //ta metoda wywołuje się niezależnie od przesłanej komendy, jeśli gra w fazie rozgrywki
 
         Board board = manager.getBoard();
-
+        System.out.println("Win checking");
         for(Player p: manager.getPlayers()){
             if(board.checkPos(p.getName(), p.getDest())){
-                manager.setCurrentState(new GameEndState(manager));
                 manager.sendCommand("ALL POPUP Game ended. Winner is: "+p.getName());
+                manager.setCurrentState(new GameEndState(manager));
                 break;
             }
         }
 
         if(next != null){
             next.handle(command);
-        }else{
-            System.out.println("Unrecognized command");
         }
     }
 }

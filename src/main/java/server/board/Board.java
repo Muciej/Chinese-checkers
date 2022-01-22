@@ -158,17 +158,17 @@ public class Board {
     }
 
     public boolean checkPos(String playerName, int posNo){
+        System.out.println("Checking win for "+ playerName + " on "+posNo);
         boolean occupies = true;
         for(int i=0; i<height; i++){
             for(int j=0; j<width; j++){
                 Field tempField = fields[j][i];
-                if (tempField.getStartFieldNo() != posNo || !tempField.getOccupant().equals(playerName)) {
+                if (tempField != null && tempField.getStartFieldNo() == posNo && (tempField.getOccupant() == null || !tempField.getOccupant().equals(playerName) ) ) {
                     occupies = false;
                     break;
                 }
             }
         }
-
         return occupies;
     }
 }

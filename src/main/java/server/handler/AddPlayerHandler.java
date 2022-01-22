@@ -40,12 +40,8 @@ public class AddPlayerHandler extends BaseHandler{
                 manager.sendCommand("ALL POPUP Name occupied");
             }
         }
-        else {
-            if( next != null) {
-                next.handle(command);
-            } else{
-                System.out.println("Unrecognized command");
-            }
+        if( next != null) {
+            next.handle(command);
         }
     }
 }

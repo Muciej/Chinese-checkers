@@ -20,11 +20,7 @@ public class MessageHandler extends BaseHandler{
             //wzór komendy: MESSAGE NazwaGracza wiadomość
             manager.sendCommand("ALL POPUP"+command.substring("MESSAGE".length())+1);
 
-        } else{
-            if(next != null) next.handle(command);
-            else{
-                System.out.println("Unrecognized command");
-            }
         }
+        if(next != null) next.handle(command);
     }
 }

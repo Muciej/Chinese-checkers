@@ -76,10 +76,9 @@ public class StartHandler extends BaseHandler{
                 throw new IllegalCommandException("Cannot start game with that amount of players!");
             }
 
-        } else if (next != null) {
+        }
+        if (next != null) {
             next.handle(command);
-        }else{
-            System.out.println("Unrecognized command");
         }
     }
 }

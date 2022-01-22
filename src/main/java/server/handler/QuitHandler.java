@@ -18,11 +18,7 @@ public class QuitHandler extends BaseHandler{
         if(command.startsWith("QUIT")){
             //wzór komendy: MESSAGE NazwaGracza wiadomość
             manager.sendCommand("ALL QUIT");
-        } else{
-            if(next != null) next.handle(command);
-            else{
-                System.out.println("Unrecognized command");
-            }
         }
+        if(next != null) next.handle(command);
     }
 }
