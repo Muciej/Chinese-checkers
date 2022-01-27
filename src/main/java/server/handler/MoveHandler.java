@@ -6,6 +6,10 @@ import server.moves.Move;
 import server.moves.MovesMaster;
 import server.state.IllegalCommandException;
 
+/**
+ * Handler realizujący komendę MOVE
+ * Sprawdza poprawność ruchu i powiadamia klientów o ruchu
+ */
 public class MoveHandler extends BaseHandler {
 
     MovesMaster movesMaster;

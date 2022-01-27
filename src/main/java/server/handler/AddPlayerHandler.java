@@ -6,6 +6,10 @@ import server.state.IllegalCommandException;
 
 import java.awt.*;
 
+/**
+ * Handler obsługujący komendę ADD
+ * Dodaje nowego gracza do gry
+ */
 public class AddPlayerHandler extends BaseHandler{
     public AddPlayerHandler(ChineseCheckerServer man) {
         super(man);

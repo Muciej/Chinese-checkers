@@ -11,6 +11,11 @@ import server.state.State;
 
 import java.util.ArrayList;
 
+/**
+ * Główna klasa serwera
+ * Pełni rolę podobną do fasady
+ * Zarządza pozostałymi klasami i udostępnia interfejs do komunikacji z serwerem
+ */
 public class ChineseCheckerServer {
 
     IServer server;
@@ -34,6 +39,10 @@ public class ChineseCheckerServer {
         server = new Server(this, 60000);
     }
 
+    /**
+     * Funkcja inicjująca przetwarzanie odebranej komendy
+     * Wysyła ją do łańcucha handlerów
+     */
     private synchronized void executeCommands() {
         try {
             while(commands.size() > 0){
@@ -47,16 +56,27 @@ public class ChineseCheckerServer {
         }
     }
 
+    /**
+     * Funkcja pozwalająca dodać komendę do wykonania
+     * @param command - komenda do obsłużenia przez serwer
+     */
     public synchronized void addCommandToExecute(String command){
         commands.add(command);
         executeCommands();
     }
 
-
+    /**
+     * Funkcja służąca do wysyłania komend do serwera
+     * @param command - komenda do wysłania
+     */
     public void sendCommand(String command){
         server.sendCommand(command);
     }
 
+    /**
+     * Funkcja pozwalająca ustawić obecny stan gry
+     * @param newState - nowy stan do ustawienia
+     */
     public void setCurrentState(State newState){
         currentState = newState;
         commandHandler = currentState.getHandler();
@@ -92,6 +112,10 @@ public class ChineseCheckerServer {
         playOrder.add(p);
     }
 
+    /**
+     * Funkcja pozwalająca zmienić obecnie ruszającego się gracza
+     * @param currentPlayer
+     */
     public void setCurrentPlayer(Player currentPlayer) {
         this.currentPlayer = currentPlayer;
     }
@@ -100,6 +124,10 @@ public class ChineseCheckerServer {
         return playOrder;
     }
 
+    /**
+     * Funkcja odpowiedzialna za zmianę aktywnego gracza
+     * na kolejnego gracza z listy
+     */
     public void nextPlayer(){
         if(intCurrentPlayer == playOrder.size()-1){
             intCurrentPlayer = 0;

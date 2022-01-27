@@ -9,6 +9,10 @@ import server.state.IllegalCommandException;
 
 import java.util.ArrayList;
 
+/**
+ * Handler obsługujący komendę START
+ * Jeśli jest to możliwe, to uruchamia grę
+ */
 public class StartHandler extends BaseHandler{
     public StartHandler(ChineseCheckerServer man) {
         super(man);

@@ -6,6 +6,9 @@ import server.board.Board;
 import server.state.GameEndState;
 import server.state.IllegalCommandException;
 
+/**
+ * Handler sprawdzający, czy ktoś nie wygrał
+ */
 public class CheckHandler extends BaseHandler{
 
     public CheckHandler(ChineseCheckerServer man){

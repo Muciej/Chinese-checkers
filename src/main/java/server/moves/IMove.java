@@ -4,6 +4,11 @@ import server.board.Board;
 
 import java.util.ArrayList;
 
+/**
+ * Interfejs dla klas sprawdzających możliwości wykonania
+ * ruchów
+ * Klasy implementujące ten interfejs sprawdzają poszczególne typy ruchów
+ */
 public interface IMove {
     /**
      * Funkcja dodająca wszystkie możliwe ruchy danego typu do tablicy możliwych ruchów

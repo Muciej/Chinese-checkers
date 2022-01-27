@@ -2,6 +2,10 @@ package server;
 
 import java.awt.*;
 
+/**
+ * Klasa przechowująca dane na temat gracza
+ * Nie obsługuje żadnej logiki
+ */
 public class Player {
     String name;
     Color color;

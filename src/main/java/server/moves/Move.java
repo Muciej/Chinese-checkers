@@ -1,5 +1,8 @@
 package server.moves;
 
+/**
+ * Klasa służąca do przechowywania infromacji na temat ruchu
+ */
 public class Move {
     public int fromX;
     public int fromY;

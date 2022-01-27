@@ -3,6 +3,10 @@ package server.handler;
 import server.ChineseCheckerServer;
 import server.state.IllegalCommandException;
 
+/**
+ * Handler obsługujący komendę QUIT
+ * Kończy grę
+ */
 public class QuitHandler extends BaseHandler{
     public QuitHandler(ChineseCheckerServer man) {
         super(man);

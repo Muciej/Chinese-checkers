@@ -4,6 +4,9 @@ import server.board.Board;
 
 import java.util.ArrayList;
 
+/**
+ * Klasa obsługująca ruch skoku przez inny pionek w dowolnym kierunku
+ */
 public class JumpMove implements IMove {
     int fromX;
     int fromY;

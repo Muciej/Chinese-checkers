@@ -3,8 +3,10 @@ package server.moves;
 import server.board.Board;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
+/**
+ * Klasa zarządzająca łańcuchem możliwych ruchów
+ */
 public class MovesMaster {
     Board board;
     ArrayList<IMove> chain;

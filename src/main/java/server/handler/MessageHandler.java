@@ -3,6 +3,10 @@ package server.handler;
 import server.ChineseCheckerServer;
 import server.state.IllegalCommandException;
 
+/**
+ * Handler odpowiedzialny za wysyłanie wiadomości między graczami
+ * Wykonuje komendę MESSAGE
+ */
 public class MessageHandler extends BaseHandler{
     public MessageHandler(ChineseCheckerServer man) {
         super(man);
