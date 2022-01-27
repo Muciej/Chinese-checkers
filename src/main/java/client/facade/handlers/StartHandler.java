@@ -1,10 +1,11 @@
 package client.facade.handlers;
 
 import client.facade.ClientFacade;
-import client.windows.MainWindow;
-import client.windows.StartPnl;
 import server.state.IllegalCommandException;
 
+/**
+ * Handler obsługujący komendę START
+ */
 public class StartHandler extends BaseHandler {
 
     public StartHandler(ClientFacade facade) {

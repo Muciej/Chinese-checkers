@@ -3,10 +3,18 @@ package client.board;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
+/**
+ * Klasa reprezentująca puste pole na planszy, na którym nie można stanąć
+ */
 public class NoField extends Field {
 
     Color color;
 
+    /**
+     * Konstruktor "nieistniejącego" pola
+     * @param b - plansza, do której należy pole
+     * @param bcgrndCol - kolor tła planszy oraz pól
+     */
     NoField(Board b, Color bcgrndCol){
         board = b;
         color = bcgrndCol;
@@ -16,11 +24,6 @@ public class NoField extends Field {
     @Override
     public Color getFigCol() {
         return null;
-    }
-
-    @Override
-    public int getStartNo() {
-        return -1;
     }
 
     @Override

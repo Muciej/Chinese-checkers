@@ -6,6 +6,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Scanner;
 
+/**
+ * Klasa reprezentująca planszę w kliencie
+ * Jej rola jest przede wszystkim graficzna
+ * Nie pełni żadnych fnkcji logicznych
+ * Metody tej klasy pozwalają na zainicjowanie planszy odpowiednią sekwencją tekstu
+ */
 public class Board extends JPanel {
 
     final Color bcgrndCol = new Color(97, 148, 229);
@@ -16,10 +22,21 @@ public class Board extends JPanel {
     boolean moving = false;
     int from_x, from_y;
 
+    /**
+     * Konstruktor inicjujący klasę
+     * @param facade - obiekt fasady klienta
+     */
     public Board(ClientFacade facade){
         this.facade = facade;
     }
 
+    /**
+     * Funkcja służąca do inicjacji nowej planszy z grą
+     * @param scanner - skaner strumienia, z którego mają przyjśc dane o planszy
+     * @param width - szerokość planszy
+     * @param height - wysokość planszy
+     * @param occupiedStartFields - liczba pól startowych, które są zajęte (zazwyczaj liczba graczy)
+     */
     public void initBoard(Scanner scanner, int width, int height, int occupiedStartFields){
 
         this.height = height;
@@ -74,6 +91,13 @@ public class Board extends JPanel {
         System.out.println("Board init completed");
     }
 
+    /**
+     * Funkcja realizująca przesunięcie na planszy
+     * @param fromX - wsp. X pola, z którego jest ruch
+     * @param fromY - wsp. Y pola, z którego jest ruch
+     * @param toX - wsp. X pola, NA które jest ruch
+     * @param toY - wsp. Y pola, NA które jest ruch
+     */
     public void doMove(int fromX, int fromY, int toX, int toY){
         /*
         Field oldField = fields[fromX][fromY];
@@ -96,6 +120,10 @@ public class Board extends JPanel {
         repaint();
     }
 
+    /**
+     * Pomocnicza klasa wewnętrzna używana do przechowania informacji
+     * o sposobie inicjacji pól startowych o danym nr
+     */
     private class startFieldCol{
         int startFieldNo;
         Color color;

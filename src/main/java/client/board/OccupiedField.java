@@ -1,9 +1,12 @@
 package client.board;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
+/**
+ * Klasa reprezentująca wszystkie pionki
+ * (pierwotnie tylko zajęte, skąd nazwa, ale w toku projektowania uznałem, że jednak sensowniej będzie, jeśli będzie reprezentowała oba rodzaje pól)
+ */
 public class OccupiedField extends Field{
 
     final double ocScale = 1.0;
@@ -12,6 +15,16 @@ public class OccupiedField extends Field{
     Color bcgrndCol, figCol;
     MCircle circle;
 
+    /**
+     * Konstruktor pola
+     * @param b - plansza, do której należy ten pionek
+     * @param x - wsp. X pionka na planszy
+     * @param y - wsp. Y pionka na planszy
+     *          Przy czym oś Y rośnie w stronę południa
+     * @param startPos - nr pola startowego przypisany do tego pionka, -1 jeśli nie ma
+     * @param bcgrndCol - kolor tła dla pionków i planszy
+     * @param figCol - kolor figury stojącej na polu
+     */
     OccupiedField(Board b, int x, int y, int startPos, Color bcgrndCol, Color figCol) {
         board = b;
         this.x = x;
@@ -29,11 +42,6 @@ public class OccupiedField extends Field{
     @Override
     public Color getFigCol() {
         return figCol;
-    }
-
-    @Override
-    public int getStartNo() {
-        return startPos;
     }
 
     @Override
@@ -56,6 +64,10 @@ public class OccupiedField extends Field{
         //((Graphics2D)g).draw(circle);
     }
 
+    /**
+     * Funkcja obsługująca kliknięcie myszą na tym polu
+     * @param e - obiekt reprezentujący zdarzenie myszy
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
         board.unhighlight();

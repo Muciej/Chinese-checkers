@@ -4,10 +4,17 @@ import client.facade.ClientFacade;
 import client.windows.MainWindow;
 import server.state.IllegalCommandException;
 
+/**
+ * Handler obsługujący komendę POPUP
+ */
 public class ShowDialogHandler extends BaseHandler {
 
     MainWindow mainWindow;
 
+    /**
+     * Konstruktor
+     * @param facade - obiekt fasady klienta
+     */
     public ShowDialogHandler(ClientFacade facade) {
         super(facade);
         mainWindow = facade.getMainWindow();

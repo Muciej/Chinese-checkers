@@ -3,7 +3,14 @@ package client.facade.handlers;
 import client.facade.ClientFacade;
 import server.state.IllegalCommandException;
 
+/**
+ * Hanlder obsługujący komendę QUIT
+ */
 public class QuitHandler extends BaseHandler{
+    /**
+     * Konstruktor
+     * @param facade - obiekt fasady klienta
+     */
     public QuitHandler(ClientFacade facade) {
         super(facade);
     }

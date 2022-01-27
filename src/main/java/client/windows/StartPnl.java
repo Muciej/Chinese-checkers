@@ -1,13 +1,16 @@
 package client.windows;
 
 import client.facade.ClientFacade;
-import com.sun.tools.javac.Main;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Klasa stanowiąca ekran startowy aplikacji
+ * Obsługuje także akcje myszy na sobie
+ */
 public class StartPnl extends JPanel implements ActionListener {
     ClientFacade facade;
     JButton playerBtn;

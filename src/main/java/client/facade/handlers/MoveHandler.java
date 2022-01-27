@@ -4,10 +4,17 @@ import client.board.Board;
 import client.facade.ClientFacade;
 import server.state.IllegalCommandException;
 
+/**
+ * Handler wyłapujący komendę MOVE
+ */
 public class MoveHandler extends BaseHandler{
 
     Board board;
 
+    /**
+     * Konstruktor
+     * @param facade - obiekt fasady klienta
+     */
     public MoveHandler(ClientFacade facade) {
         super(facade);
         board = facade.getBoard();

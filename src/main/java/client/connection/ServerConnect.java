@@ -9,6 +9,9 @@ import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * Klasa odpowiadająca za połączenie klienta z serwerem
+ */
 public class ServerConnect {
 
     ClientFacade facade;
@@ -17,6 +20,13 @@ public class ServerConnect {
     ExecutorService threadPool;
     PrintWriter servWriter;
     ServerReader reader;
+
+    /**
+     * Konstruktor klasy
+     * @param host - host, pod którym klasa będzie próbować się łączyć
+     * @param port - port, przez który będzie podjęta próba nawiązania połączenia
+     * @param facade - klasa fasady, służąca do dalszej obsługi żądań
+     */
     public ServerConnect(String host, int port, ClientFacade facade){
         this.facade = facade;
         try {
@@ -31,11 +41,18 @@ public class ServerConnect {
 
     }
 
+    /**
+     * Funkcja pozwalająca wysłać komendę do serwera
+     * @param command - komenda do wysłania
+     */
     public void sendCommand(String command){
         System.out.println("Sending: "+command + " to server.");
         servWriter.println(command);
     }
 
+    /**
+     * Funkcja służąca do zakończenia połączenia z serwerem
+     */
     public void terminate() {
         threadPool.shutdown();
         try {
@@ -45,10 +62,19 @@ public class ServerConnect {
         }
     }
 
+    /**
+     * Funkcja zwracająca scanner podłączonego serwera
+     * @return - zwraca scanner podłączonego serwera
+     */
     public Scanner getScanner(){
         return reader.getScanner();
     }
 
+    /**
+     * Klasa pomocnicza operująca na osobnym wątku. Służy do
+     * odczytywania inputu z serwera. Jest stworzona w ten sposób, żeby
+     * nie blokować głównego wątku
+     */
     private static class ServerReader implements Runnable{
 
         Socket sock;

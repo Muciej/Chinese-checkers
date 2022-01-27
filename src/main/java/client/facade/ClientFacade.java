@@ -7,9 +7,13 @@ import client.windows.MainWindow;
 import client.windows.StartPnl;
 import server.state.IllegalCommandException;
 
-import java.awt.*;
 import java.util.Scanner;
 
+/**
+ * Klasa odpowiedzialna za komunikację między innymi obietkami klienta
+ * zapewnia interfejs, który może zostac wykorzystany
+ * Jednocześnie jest to klasa inicjująca klienta
+ */
 public class ClientFacade {
 
     MainWindow mainWindow;
@@ -40,6 +44,10 @@ public class ClientFacade {
         chain = first;
     }
 
+    /**
+     * Funkcja odpowiedzialna za wykonanie komendy otrzymanej z serwera
+     * @param command - komenda do wykonania
+     */
     public void executeCommand(String command){
         try {
             System.out.println(command);
@@ -50,12 +58,20 @@ public class ClientFacade {
         }
     }
 
+    /**
+     * Funkcja ywsyłająca komendy do serwera
+     * @param command - komenda do wysłania
+     */
     public void sendCommand(String command){
         System.out.println(command);
         serverConnect.sendCommand(command);
 
     }
 
+    /**
+     * Funkcja ustawiająca nazwę gracza, który uruchomił tego klienta
+     * @param playerName - nazwa do ustawienia
+     */
     public void setPlayerName(String playerName) {
         this.playerName = playerName;
     }
@@ -68,10 +84,16 @@ public class ClientFacade {
         return mainWindow;
     }
 
+    /**
+     * Funkcja kończącza działanie klasy odpowiedzialnej za połączenie z serwerem
+     */
     public void quit() {
         serverConnect.terminate();
     }
 
+    /**
+     * Funkcja, która ustawia widok ekranu startowego
+     */
     public void setStartView() {
         mainWindow.remove(board);
         mainWindow.add(startPnl);
@@ -79,6 +101,9 @@ public class ClientFacade {
         board.setVisible(false);
     }
 
+    /**
+     * Funkcja, która ustawia widok planszy na oknie głównym
+     */
     public void setBoardView(){
         mainWindow.remove(startPnl);
         mainWindow.add(board);

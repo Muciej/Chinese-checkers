@@ -4,7 +4,10 @@ import client.facade.ClientFacade;
 import server.state.IllegalCommandException;
 
 public class InitHandler extends BaseHandler{
-
+    /**
+     * Handler wyłapujący i obsługujący komdendę INIT
+     * @param facade - obiekt fasady klienta
+     */
     public InitHandler(ClientFacade facade) {
         super(facade);
     }
